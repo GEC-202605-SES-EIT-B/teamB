@@ -17,11 +17,14 @@ class Program
 	{
 		string userInput1 = textBox1.Text;//日付
 		string userInput2 = textBox2.Text;//カテゴリ
-		string userInput3 = textBox3.Text;//金額
+      /*ドロップダウン処理
+		string selectedCate = comboBox1.SelectedCate.Tostring();
+	　*/
+        string userInput3 = textBox3.Text;//金額
 		string userInput4 = textBox4.Text;//メモ
 
 		Money money = new Money 
-		{Date = userInput1, Cate = userInput2, Price = userInput3, Memo = userInput4};
+		{Date = userInput1, Cate = userInput2/*selectedCate*/　, Price = userInput3, Memo = userInput4};
 
 		string jsonString = JsonSerializer.Serialize(money);
 		File.WriteAllText("money.json,jsonString);
