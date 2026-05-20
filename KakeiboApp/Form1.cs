@@ -27,5 +27,10 @@ namespace KakeiboApp
         {
 
         }
+
+        private void dtpMonth_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
