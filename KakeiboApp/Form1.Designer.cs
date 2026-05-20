@@ -31,7 +31,7 @@
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
-            comboBox1 = new ComboBox();
+            cmbCategory = new ComboBox();
             btpAdd = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -60,14 +60,14 @@
             txtAmount.Size = new Size(150, 31);
             txtAmount.TabIndex = 2;
             // 
-            // comboBox1
+            // cmbCategory
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "生活費", "食費", "娯楽費", "給与", "その他" });
-            comboBox1.Location = new Point(12, 286);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(182, 33);
-            comboBox1.TabIndex = 3;
+            cmbCategory.FormattingEnabled = true;
+            cmbCategory.Items.AddRange(new object[] { "生活費", "食費", "娯楽費", "給与", "その他" });
+            cmbCategory.Location = new Point(12, 286);
+            cmbCategory.Name = "cmbCategory";
+            cmbCategory.Size = new Size(182, 33);
+            cmbCategory.TabIndex = 3;
             // 
             // btpAdd
             // 
@@ -77,6 +77,7 @@
             btpAdd.TabIndex = 4;
             btpAdd.Text = "登録";
             btpAdd.UseVisualStyleBackColor = true;
+            btpAdd.Click += btpAdd_Click;
             // 
             // label1
             // 
@@ -124,7 +125,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btpAdd);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbCategory);
             Controls.Add(txtAmount);
             Controls.Add(txtMemo);
             Controls.Add(dtpDate);
@@ -139,7 +140,7 @@
         private DateTimePicker dtpDate;
         private TextBox txtMemo;
         private TextBox txtAmount;
-        private ComboBox comboBox1;
+        private ComboBox cmbCategory;
         private Button btpAdd;
         private Label label1;
         private Label label2;
