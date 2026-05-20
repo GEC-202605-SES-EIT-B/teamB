@@ -20,7 +20,7 @@ namespace KakeiboApp
 
             AppData.Items.Add(item);
 
-            MessageBox.Show(AppData.Items.Count.ToString());
+            MessageBox.Show("“o˜^Š®—¹");
         }
 
     }
