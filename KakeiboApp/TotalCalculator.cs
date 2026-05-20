@@ -10,25 +10,23 @@ namespace KakeiboApp
         public int Income { get; set; }
         public int Expense { get; set; }
 
-        public void Calculate(List<KakeiboData> kakeiboList,
-            int year,
-            int month)
+        public void Calculate(int year,int month)
         { 
             Income = 0;
             Expense = 0;
             
-            foreach (var data in kakeiboList)
+            foreach (var data in AppData.Items)
             {
                 if (data.Date.Year == year &&
                     data.Date.Month == month)
                 {
                     if (data.Amount > 0)
                     {
-                        Income += data.Amount;
+                        Income += (int) data.Amount;
                     }
                     else
                     {
-                        Expense += Math.Abs(data.Amount);
+                        Expense += Math.Abs((int) data.Amount);
                     }
                 }
                 
