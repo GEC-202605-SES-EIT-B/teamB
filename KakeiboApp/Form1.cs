@@ -23,5 +23,9 @@ namespace KakeiboApp
             MessageBox.Show("“o˜^Š®—¹");
         }
 
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
