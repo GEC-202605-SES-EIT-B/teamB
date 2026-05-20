@@ -2,30 +2,46 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace KakeiboApp
 {
     public class MonthlySummary
     {
-        public void ShowSummary(List<KakeiboData> kakeiboList)
+        public int Income { get; set; }
+        public int Expense { get; set; }
+
+        public void Calculate(List<KakeiboData> kakeiboList)
         {
+           
             DateTime today = DateTime.Now;
-            int income = 0;
-            int expence = 0;
+
+            Income = 0;
+            Expense = 0;
+            
 
             foreach (var data in kakeiboList)
             {
-                if (data.Amount > 0)
+                if (data.Date.Year == today.Year &&
+                    data.Date.Month == today.Month)
                 {
-                    income += data.Amount;
+                    if (data.Amount > 0)
+                    {
+                        Income += data.Amount;
+                    }
+                    else
+                    {
+                        Expense += Math.Abs(data.Amount);
+                    }
                 }
-                else
-                {
-                    expence += Math.Abs(DataFormats.Amount);
-                }
-            }
-            Console.WriteLine("収入:" + income);
-            Console.WriteLine("支出:" + expence);
-        }       
+                
+            }  
+        }  
+        public int Balance
+        {  get
+            {
+                return Income - Expense;
+            }   
+        }
     }
 }
 
