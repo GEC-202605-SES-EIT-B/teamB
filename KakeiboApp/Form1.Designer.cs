@@ -41,7 +41,7 @@
             // 
             // dtpDate
             // 
-            dtpDate.Location = new Point(-1, 47);
+            dtpDate.Location = new Point(32, 47);
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(300, 31);
             dtpDate.TabIndex = 0;
@@ -108,7 +108,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(91, 9);
+            label4.Location = new Point(125, 9);
             label4.Name = "label4";
             label4.Size = new Size(48, 25);
             label4.TabIndex = 8;
