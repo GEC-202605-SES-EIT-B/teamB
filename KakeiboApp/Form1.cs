@@ -1,4 +1,4 @@
-namespace KakeiboApp
+ï»¿namespace KakeiboApp
 {
     public partial class Form1 : Form
     {
@@ -20,7 +20,7 @@ namespace KakeiboApp
 
             AppData.Items.Add(item);
 
-            MessageBox.Show("“o˜^Š®—¹");
+            MessageBox.Show("ç™»éŒ²å®Œäº†");
         }
 
         private void dtpDate_ValueChanged(object sender, EventArgs e)
@@ -32,5 +32,17 @@ namespace KakeiboApp
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+
+
+        }
+
     }
-}
+    }
+
+
+
