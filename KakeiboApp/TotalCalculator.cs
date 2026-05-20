@@ -10,19 +10,17 @@ namespace KakeiboApp
         public int Income { get; set; }
         public int Expense { get; set; }
 
-        public void Calculate(List<KakeiboData> kakeiboList)
-        {
-           
-            DateTime today = DateTime.Now;
-
+        public void Calculate(List<KakeiboData> kakeiboList,
+            int year,
+            int month)
+        { 
             Income = 0;
             Expense = 0;
             
-
             foreach (var data in kakeiboList)
             {
-                if (data.Date.Year == today.Year &&
-                    data.Date.Month == today.Month)
+                if (data.Date.Year == year &&
+                    data.Date.Month == month)
                 {
                     if (data.Amount > 0)
                     {
@@ -44,14 +42,3 @@ namespace KakeiboApp
         }
     }
 }
-
-
-/* 月次サマリー
- * 年月の取得　
- * 収入の合計  
- * 支出の合計  
- * 収支の計算  
- 
-
- 
-
