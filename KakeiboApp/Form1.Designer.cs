@@ -41,11 +41,11 @@
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
-            dtpMonth = new DateTimePicker();
-            lblIncome = new Label();
-            lblExpense = new Label();
-            lblIBalance = new Label();
             button1 = new Button();
+            lblIBalance = new Label();
+            lblExpense = new Label();
+            lblIncome = new Label();
+            dtpMonth = new DateTimePicker();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage3.SuspendLayout();
@@ -183,33 +183,14 @@
             tabPage3.Text = "月次サマリ";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // dtpMonth
+            // button1
             // 
-            dtpMonth.CustomFormat = "yyyy/MM";
-            dtpMonth.Format = DateTimePickerFormat.Custom;
-            dtpMonth.Location = new Point(6, 6);
-            dtpMonth.Name = "dtpMonth";
-            dtpMonth.Size = new Size(300, 31);
-            dtpMonth.TabIndex = 0;
-            dtpMonth.ValueChanged += dtpMonth_ValueChanged;
-            // 
-            // lblIncome
-            // 
-            lblIncome.AutoSize = true;
-            lblIncome.Location = new Point(51, 105);
-            lblIncome.Name = "lblIncome";
-            lblIncome.Size = new Size(48, 25);
-            lblIncome.TabIndex = 1;
-            lblIncome.Text = "収入";
-            // 
-            // lblExpense
-            // 
-            lblExpense.AutoSize = true;
-            lblExpense.Location = new Point(51, 206);
-            lblExpense.Name = "lblExpense";
-            lblExpense.Size = new Size(48, 25);
-            lblExpense.TabIndex = 2;
-            lblExpense.Text = "支出";
+            button1.Location = new Point(633, 45);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 4;
+            button1.Text = "集計";
+            button1.UseVisualStyleBackColor = true;
             // 
             // lblIBalance
             // 
@@ -220,14 +201,34 @@
             lblIBalance.TabIndex = 3;
             lblIBalance.Text = "差額";
             // 
-            // button1
+            // lblExpense
             // 
-            button1.Location = new Point(633, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 4;
-            button1.Text = "集計";
-            button1.UseVisualStyleBackColor = true;
+            lblExpense.AutoSize = true;
+            lblExpense.Location = new Point(51, 206);
+            lblExpense.Name = "lblExpense";
+            lblExpense.Size = new Size(48, 25);
+            lblExpense.TabIndex = 2;
+            lblExpense.Text = "支出";
+            // 
+            // lblIncome
+            // 
+            lblIncome.AutoSize = true;
+            lblIncome.Location = new Point(51, 105);
+            lblIncome.Name = "lblIncome";
+            lblIncome.Size = new Size(48, 25);
+            lblIncome.TabIndex = 1;
+            lblIncome.Text = "収入";
+            // 
+            // dtpMonth
+            // 
+            dtpMonth.CustomFormat = "yyyy/MM";
+            dtpMonth.Format = DateTimePickerFormat.Custom;
+            dtpMonth.Location = new Point(6, 6);
+            dtpMonth.Name = "dtpMonth";
+            dtpMonth.ShowUpDown = true;
+            dtpMonth.Size = new Size(300, 31);
+            dtpMonth.TabIndex = 0;
+            dtpMonth.ValueChanged += dtpMonth_ValueChanged;
             // 
             // Form1
             // 
