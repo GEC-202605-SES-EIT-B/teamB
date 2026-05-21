@@ -40,14 +40,24 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            dgvList = new DataGridView();
             tabPage3 = new TabPage();
             button1 = new Button();
             lblIBalance = new Label();
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
+            dtpFrom = new DateTimePicker();
+            dtpTo = new DateTimePicker();
+            label5 = new Label();
+            label6 = new Label();
+            cmbFilterCategory = new ComboBox();
+            label7 = new Label();
+            btnSearch = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvList).BeginInit();
             tabPage3.SuspendLayout();
             SuspendLayout();
             // 
@@ -160,6 +170,14 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnSearch);
+            tabPage2.Controls.Add(label7);
+            tabPage2.Controls.Add(cmbFilterCategory);
+            tabPage2.Controls.Add(label6);
+            tabPage2.Controls.Add(label5);
+            tabPage2.Controls.Add(dtpTo);
+            tabPage2.Controls.Add(dtpFrom);
+            tabPage2.Controls.Add(dgvList);
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -167,6 +185,15 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "一覧";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgvList
+            // 
+            dgvList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvList.Location = new Point(20, 92);
+            dgvList.Name = "dgvList";
+            dgvList.RowHeadersWidth = 62;
+            dgvList.Size = new Size(752, 226);
+            dgvList.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -230,6 +257,67 @@
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
             // 
+            // dtpFrom
+            // 
+            dtpFrom.Location = new Point(20, 31);
+            dtpFrom.Name = "dtpFrom";
+            dtpFrom.Size = new Size(193, 31);
+            dtpFrom.TabIndex = 2;
+            // 
+            // dtpTo
+            // 
+            dtpTo.Location = new Point(234, 31);
+            dtpTo.Name = "dtpTo";
+            dtpTo.Size = new Size(191, 31);
+            dtpTo.TabIndex = 3;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 25);
+            label5.TabIndex = 4;
+            label5.Text = "開始日";
+            label5.Click += label5_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(234, 3);
+            label6.Name = "label6";
+            label6.Size = new Size(66, 25);
+            label6.TabIndex = 5;
+            label6.Text = "終了日";
+            // 
+            // cmbFilterCategory
+            // 
+            cmbFilterCategory.FormattingEnabled = true;
+            cmbFilterCategory.Items.AddRange(new object[] { "すべて", "生活費", "食費", "娯楽費", "給与", "その他" });
+            cmbFilterCategory.Location = new Point(449, 33);
+            cmbFilterCategory.Name = "cmbFilterCategory";
+            cmbFilterCategory.Size = new Size(126, 33);
+            cmbFilterCategory.TabIndex = 6;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(449, 3);
+            label7.Name = "label7";
+            label7.Size = new Size(64, 25);
+            label7.TabIndex = 7;
+            label7.Text = "カテゴリ";
+            label7.Click += label7_Click;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(632, 28);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(112, 34);
+            btnSearch.TabIndex = 8;
+            btnSearch.Text = "検索";
+            btnSearch.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -241,6 +329,9 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvList).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ResumeLayout(false);
@@ -266,5 +357,13 @@
         private Label lblIncome;
         private DateTimePicker dtpMonth;
         private Button button1;
+        private DataGridView dgvList;
+        private DateTimePicker dtpTo;
+        private DateTimePicker dtpFrom;
+        private Label label5;
+        private Label label7;
+        private ComboBox cmbFilterCategory;
+        private Label label6;
+        private Button btnSearch;
     }
 }
