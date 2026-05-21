@@ -17,7 +17,7 @@ namespace KakeiboApp
 
 	class Program
 	{
-		static void Main()
+		static void Save()
 		{
 			string userInput1 = dtpDate.Text;//日付
 											 //string userInput2 = textBox2.Text;//カテゴリ
