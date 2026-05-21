@@ -34,7 +34,27 @@ namespace KakeiboApp
 			File.WriteAllText("money.json,jsonString);
 
 			Console.WriteLine("保存完了");
-		}
+
+			//Jsonファイル読み込み
+			string jsonstring = File.ReadAllText("money.json");
+			Money money = JsonSerializer.Deserialize<Money>(jsonstring);
+
+			var kakeiboList = new List<money>();
+
+			kakeiboList.Add({ money.Date});
+            kakeiboList.Add({ money.Cate});
+            kakeiboList.Add({ money.Price});
+            kakeiboList.Add({ money.Memo});
+
+			Console.WriteLine("読み込み処理完了");
+
+
+
+
+
+
+
+        }
 	}
 
 }
