@@ -40,15 +40,20 @@ namespace KakeiboApp
 
             AppData.Items.Add(item);
 
-            MessageBox.Show("�o�^����");
+            MessageBox.Show("登録完了");
+        }
 
             //��������Json�����o��
                 string filePath = "money.json";
                 string userInput1 = dtpDate.Text;//���t
-              //string userInput2 = textBox2.Text;	//�J�e�S��								
+              　string userInput2 = textBox2.Text;	//�J�e�S��								
                 string selectedCate = cmbCategory.SelectedCate.Tostring();//�v���_�E��
                 string userInput3 = txtAmount.Text;//��z
                 string userInput4 = txtMemo.Text;//����
+
+            MessageBox.Show("集計完了");
+
+
 
                 Money money = new Money
                 { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
@@ -70,7 +75,6 @@ namespace KakeiboApp
 
 
             }
-
             private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
@@ -94,7 +98,7 @@ namespace KakeiboApp
             dgvList.DataSource = null;
             dgvList.DataSource = AppData.Items;
 
-            MessageBox.Show("�W�v����");
+            MessageBox.Show("検索完了");
         }
 
         private void label5_Click(object sender, EventArgs e)
