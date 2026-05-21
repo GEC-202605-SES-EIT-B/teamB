@@ -34,8 +34,6 @@ namespace KakeiboApp
 
             MessageBox.Show("登録完了");
         }
-
-            MessageBox.Show("集計完了");
 　　　　　　　
 
                //��������Json�����o��
