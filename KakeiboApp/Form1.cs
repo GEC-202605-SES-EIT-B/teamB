@@ -47,6 +47,8 @@ namespace KakeiboApp
         {
             dgvList.DataSource = null;
             dgvList.DataSource = AppData.Items;
+
+            MessageBox.Show("検索完了");
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -77,6 +79,8 @@ namespace KakeiboApp
 
             dgvList.DataSource = null;
             dgvList.DataSource = data.ToList();
+
+            MessageBox.Show("集計完了");
 
         }
     }
