@@ -34,7 +34,6 @@ namespace KakeiboApp
             MessageBox.Show("登録完了");
         }
 
-
             //��������Json�����o��
                 string filePath = "money.json";
                 string userInput1 = dtpDate.Text;//���t
@@ -43,13 +42,15 @@ namespace KakeiboApp
                 string userInput3 = txtAmount.Text;//��z
                 string userInput4 = txtMemo.Text;//����
 
+            MessageBox.Show("集計完了");
+
             //��������Json�����o��
                 string filePath = "money.json";
                 string userInput1 = dtpDate.Text;//���t
-              //string userInput2 = textBox2.Text;	//�J�e�S��								
+              //string userInput2 = textBox2.Text;	//�							
                 string selectedCate = cmbCategory.SelectedCate.Tostring();//�v���_�E��
-                string userInput3 = txtAmount.Text;//��z
-                string userInput4 = txtMemo.Text;//����
+                string userInput3 = txtAmount.Text;
+                string userInput4 = txtMemo.Text;
 
                 Money money = new Money
                 { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
@@ -57,6 +58,20 @@ namespace KakeiboApp
                 string jsonString = JsonSerializer.Serialize(money);
                 File.WriteAllText("money.json,jsonString);
 
+                /*List��
+
+                var data = new List<Money>
+                {
+                    new Money {Date =userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4}
+                };
+
+                 string jsonString = JsonSerializer.Serialize(money);
+                 File.WriteAllText(filePath, jsonString);
+
+                */
+
+
+            }
             private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
@@ -80,7 +95,7 @@ namespace KakeiboApp
             dgvList.DataSource = null;
             dgvList.DataSource = AppData.Items;
 
-            MessageBox.Show("集計完了");
+            MessageBox.Show("検索完了");
         }
 
         private void label5_Click(object sender, EventArgs e)
