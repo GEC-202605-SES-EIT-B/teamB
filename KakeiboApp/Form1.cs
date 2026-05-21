@@ -19,14 +19,6 @@ namespace KakeiboApp
             public string Memo { get; set; }
         }
 
-        public class Money
-        {
-            public int Date { get; set; }
-            public string Cate { get; set; }
-            public int Price { get; set; }
-            public string Memo { get; set; }
-        }
-
         private void btpAdd_Click(object sender, EventArgs e)
         {
 
@@ -43,13 +35,12 @@ namespace KakeiboApp
             MessageBox.Show("登録完了");
         }
 
-            //��������Json�����o��
+         
                 string filePath = "money.json";
-                string userInput1 = dtpDate.Text;//���t
-              　string userInput2 = textBox2.Text;	//�J�e�S��								
-                string selectedCate = cmbCategory.SelectedCate.Tostring();//�v���_�E��
-                string userInput3 = txtAmount.Text;//��z
-                string userInput4 = txtMemo.Text;//����
+                string userInput1 = dtpDate.Text;							
+                string selectedCate = cmbCategory.SelectedCate.Tostring();
+                string userInput3 = txtAmount.Text;
+                string userInput4 = txtMemo.Text;
 
             MessageBox.Show("集計完了");
 
@@ -61,7 +52,7 @@ namespace KakeiboApp
                 string jsonString = JsonSerializer.Serialize(money);
                 File.WriteAllText("money.json,jsonString);
 
-                /*List��
+                /*Listver
 
                 var data = new List<Money>
                 {
