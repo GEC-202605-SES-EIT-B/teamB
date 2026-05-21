@@ -5,6 +5,15 @@ namespace KakeiboApp
         public Form1()
         {
             InitializeComponent();
+
+        }
+
+        public class Money
+        {
+            public int Date { get; set; }
+            public string Cate { get; set; }
+            public int Price { get; set; }
+            public string Memo { get; set; }
         }
 
         private void btpAdd_Click(object sender, EventArgs e)
@@ -21,9 +30,37 @@ namespace KakeiboApp
             AppData.Items.Add(item);
 
             MessageBox.Show("登録完了");
-        }
 
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
+            //ここからJson書き出し
+                string filePath = "money.json";
+                string userInput1 = dtpDate.Text;//日付
+              //string userInput2 = textBox2.Text;	//カテゴリ								
+                string selectedCate = cmbCategory.SelectedCate.Tostring();//プルダウン
+                string userInput3 = txtAmount.Text;//金額
+                string userInput4 = txtMemo.Text;//メモ
+
+                Money money = new Money
+                { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
+
+                string jsonString = JsonSerializer.Serialize(money);
+                File.WriteAllText("money.json,jsonString);
+
+                /*List編
+
+                var data = new List<Money>
+                {
+                    new Money {Date =userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4}
+                };
+
+                 string jsonString = JsonSerializer.Serialize(money);
+                 File.WriteAllText(filePath, jsonString);
+
+                */
+
+
+            }
+
+            private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
         }
