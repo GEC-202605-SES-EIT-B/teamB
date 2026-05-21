@@ -43,17 +43,16 @@ namespace KakeiboApp
             MessageBox.Show("登録完了");
         }
 
-            //��������Json�����o��
+            MessageBox.Show("集計完了");
+　　　　　　　
+
+               //��������Json�����o��
                 string filePath = "money.json";
                 string userInput1 = dtpDate.Text;//���t
               　string userInput2 = textBox2.Text;	//�J�e�S��								
                 string selectedCate = cmbCategory.SelectedCate.Tostring();//�v���_�E��
                 string userInput3 = txtAmount.Text;//��z
                 string userInput4 = txtMemo.Text;//����
-
-            MessageBox.Show("集計完了");
-
-
 
                 Money money = new Money
                 { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
