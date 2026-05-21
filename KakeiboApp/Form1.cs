@@ -49,6 +49,7 @@ namespace KakeiboApp
                 string jsonString = JsonSerializer.Serialize(money);
                 File.WriteAllText("money.json,jsonString);
 
+                
                 /*Listver
 
                 var data = new List<Money>
@@ -62,7 +63,8 @@ namespace KakeiboApp
                 */
 
 
-            }
+                }
+
             private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
