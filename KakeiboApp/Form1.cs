@@ -8,6 +8,15 @@ namespace KakeiboApp
         {
             InitializeComponent();
 
+
+        }
+
+        public class Money
+        {
+            public int Date { get; set; }
+            public string Cate { get; set; }
+            public int Price { get; set; }
+            public string Memo { get; set; }
         }
 
         public class Money
@@ -31,17 +40,7 @@ namespace KakeiboApp
 
             AppData.Items.Add(item);
 
-            MessageBox.Show("登録完了");
-        }
-
-
-            //��������Json�����o��
-                string filePath = "money.json";
-                string userInput1 = dtpDate.Text;//���t
-              //string userInput2 = textBox2.Text;	//�J�e�S��								
-                string selectedCate = cmbCategory.SelectedCate.Tostring();//�v���_�E��
-                string userInput3 = txtAmount.Text;//��z
-                string userInput4 = txtMemo.Text;//����
+            MessageBox.Show("�o�^����");
 
             //��������Json�����o��
                 string filePath = "money.json";
@@ -56,6 +55,21 @@ namespace KakeiboApp
 
                 string jsonString = JsonSerializer.Serialize(money);
                 File.WriteAllText("money.json,jsonString);
+
+                /*List��
+
+                var data = new List<Money>
+                {
+                    new Money {Date =userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4}
+                };
+
+                 string jsonString = JsonSerializer.Serialize(money);
+                 File.WriteAllText(filePath, jsonString);
+
+                */
+
+
+            }
 
             private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
@@ -80,7 +94,7 @@ namespace KakeiboApp
             dgvList.DataSource = null;
             dgvList.DataSource = AppData.Items;
 
-            MessageBox.Show("集計完了");
+            MessageBox.Show("�W�v����");
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -104,7 +118,7 @@ namespace KakeiboApp
                 x.Date.Date <= to
             );
 
-            if (cmbFilterCategory.Text != "すべて")
+            if (cmbFilterCategory.Text != "���ׂ�")
             {
                 data = data.Where(x => x.Category == cmbFilterCategory.Text);
             }
@@ -112,7 +126,7 @@ namespace KakeiboApp
             dgvList.DataSource = null;
             dgvList.DataSource = data.ToList();
 
-            MessageBox.Show("検索完了");
+            MessageBox.Show("��������");
 
         }
     }
