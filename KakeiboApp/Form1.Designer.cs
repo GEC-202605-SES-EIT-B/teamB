@@ -40,6 +40,13 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            btnSearch = new Button();
+            label7 = new Label();
+            cmbFilterCategory = new ComboBox();
+            label6 = new Label();
+            label5 = new Label();
+            dtpTo = new DateTimePicker();
+            dtpFrom = new DateTimePicker();
             dgvList = new DataGridView();
             tabPage3 = new TabPage();
             button1 = new Button();
@@ -47,13 +54,6 @@
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
-            dtpFrom = new DateTimePicker();
-            dtpTo = new DateTimePicker();
-            label5 = new Label();
-            label6 = new Label();
-            cmbFilterCategory = new ComboBox();
-            label7 = new Label();
-            btnSearch = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -186,6 +186,68 @@
             tabPage2.Text = "一覧";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(632, 28);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(112, 34);
+            btnSearch.TabIndex = 8;
+            btnSearch.Text = "検索";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(449, 3);
+            label7.Name = "label7";
+            label7.Size = new Size(64, 25);
+            label7.TabIndex = 7;
+            label7.Text = "カテゴリ";
+            label7.Click += label7_Click;
+            // 
+            // cmbFilterCategory
+            // 
+            cmbFilterCategory.FormattingEnabled = true;
+            cmbFilterCategory.Items.AddRange(new object[] { "すべて", "生活費", "食費", "娯楽費", "給与", "その他" });
+            cmbFilterCategory.Location = new Point(449, 33);
+            cmbFilterCategory.Name = "cmbFilterCategory";
+            cmbFilterCategory.Size = new Size(126, 33);
+            cmbFilterCategory.TabIndex = 6;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(234, 3);
+            label6.Name = "label6";
+            label6.Size = new Size(66, 25);
+            label6.TabIndex = 5;
+            label6.Text = "終了日";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 3);
+            label5.Name = "label5";
+            label5.Size = new Size(66, 25);
+            label5.TabIndex = 4;
+            label5.Text = "開始日";
+            label5.Click += label5_Click;
+            // 
+            // dtpTo
+            // 
+            dtpTo.Location = new Point(234, 31);
+            dtpTo.Name = "dtpTo";
+            dtpTo.Size = new Size(191, 31);
+            dtpTo.TabIndex = 3;
+            // 
+            // dtpFrom
+            // 
+            dtpFrom.Location = new Point(20, 31);
+            dtpFrom.Name = "dtpFrom";
+            dtpFrom.Size = new Size(193, 31);
+            dtpFrom.TabIndex = 2;
+            // 
             // dgvList
             // 
             dgvList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -256,67 +318,6 @@
             dtpMonth.Size = new Size(300, 31);
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
-            // 
-            // dtpFrom
-            // 
-            dtpFrom.Location = new Point(20, 31);
-            dtpFrom.Name = "dtpFrom";
-            dtpFrom.Size = new Size(193, 31);
-            dtpFrom.TabIndex = 2;
-            // 
-            // dtpTo
-            // 
-            dtpTo.Location = new Point(234, 31);
-            dtpTo.Name = "dtpTo";
-            dtpTo.Size = new Size(191, 31);
-            dtpTo.TabIndex = 3;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(20, 3);
-            label5.Name = "label5";
-            label5.Size = new Size(66, 25);
-            label5.TabIndex = 4;
-            label5.Text = "開始日";
-            label5.Click += label5_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(234, 3);
-            label6.Name = "label6";
-            label6.Size = new Size(66, 25);
-            label6.TabIndex = 5;
-            label6.Text = "終了日";
-            // 
-            // cmbFilterCategory
-            // 
-            cmbFilterCategory.FormattingEnabled = true;
-            cmbFilterCategory.Items.AddRange(new object[] { "すべて", "生活費", "食費", "娯楽費", "給与", "その他" });
-            cmbFilterCategory.Location = new Point(449, 33);
-            cmbFilterCategory.Name = "cmbFilterCategory";
-            cmbFilterCategory.Size = new Size(126, 33);
-            cmbFilterCategory.TabIndex = 6;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(449, 3);
-            label7.Name = "label7";
-            label7.Size = new Size(64, 25);
-            label7.TabIndex = 7;
-            label7.Text = "カテゴリ";
-            label7.Click += label7_Click;
-            // 
-            // btnSearch
-            // 
-            btnSearch.Location = new Point(632, 28);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(112, 34);
-            btnSearch.TabIndex = 8;
-            btnSearch.Text = "検索";
-            btnSearch.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

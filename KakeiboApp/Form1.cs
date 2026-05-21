@@ -1,5 +1,7 @@
-﻿namespace KakeiboApp
-{
+﻿using System.Linq;
+
+namespace KakeiboApp
+   {
     public partial class Form1 : Form
     {
         public Form1()
@@ -56,8 +58,29 @@
         {
 
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+            var from = dtpFrom.Value.Date;
+            var to = dtpTo.Value.Date;
+
+            var data = AppData.Items.Where(x =>
+                x.Date.Date >= from &&
+                x.Date.Date <= to
+            );
+
+            if (cmbFilterCategory.Text != "すべて")
+            {
+                data = data.Where(x => x.Category == cmbFilterCategory.Text);
+            }
+
+            dgvList.DataSource = null;
+            dgvList.DataSource = data.ToList();
+
+        }
     }
-}
+   }
 
 
 
