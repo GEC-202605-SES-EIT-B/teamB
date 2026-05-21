@@ -130,7 +130,7 @@ namespace KakeiboApp
             dgvList.DataSource = null;
             dgvList.DataSource = data.ToList();
 
-            MessageBox.Show("��������");
+            MessageBox.Show("集計完了");
 
         }
     }
