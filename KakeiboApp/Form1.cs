@@ -41,8 +41,23 @@
 
         }
 
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            dgvList.DataSource = null;
+            dgvList.DataSource = AppData.Items;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    }
+}
 
 
 
