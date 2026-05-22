@@ -187,7 +187,7 @@ namespace KakeiboApp
             kakeiboList.Add({ money.Date});
             kakeiboList.Add({ money.Cate});
             kakeiboList.Add({ money.Price});
-            kakeiboList.Add({ money.Memo});
+            kakeiboList.Add({ money.Memo}); 
 
             MessageBox.Show("読み込み完了");
 
