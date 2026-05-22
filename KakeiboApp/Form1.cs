@@ -10,7 +10,21 @@ namespace KakeiboApp
         {
             InitializeComponent();
 
+            // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
+            string filePath = "people.json";
 
+            if (!File.Exists(filePath))
+            {
+                MessageBox.Show("初回起動");
+                return;
+            }
+            string readJson = File.ReadAllText(filePath);
+            var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+
+            if (kakeiboList != null)
+            {
+                MessageBox.Show("読み込み完了:");
+            }
         }
 
         public class Money
@@ -21,27 +35,6 @@ namespace KakeiboApp
             public string Memo { get; set; }
 
         }
-
-        string filePath = "people.json";
-
-            if (!File.Exists(filePath))
-            {
-                    MessageBox.Show("初回起動");
-                    break;
-       
-       
-            }
-            if (kakeiboList != null)
-            {
-
-                    string readJson = File.ReadAllText(filePath);
-                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
-                    MessageBox.Show("読み込み完了:");
-
-            }
-
-    }
-
 
         private void btpAdd_Click(object sender, EventArgs e)
         {
