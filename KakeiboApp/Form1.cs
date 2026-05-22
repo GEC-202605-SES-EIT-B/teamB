@@ -19,7 +19,29 @@ namespace KakeiboApp
             public string Cate { get; set; }
             public Decimal Price { get; set; }
             public string Memo { get; set; }
+
         }
+
+        string filePath = "people.json";
+
+            if (!File.Exists(filePath))
+            {
+                    MessageBox.Show("初回起動");
+                    break;
+       
+       
+            }
+            if (kakeiboList != null)
+            {
+
+                    string readJson = File.ReadAllText(filePath);
+                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                    MessageBox.Show("読み込み完了:");
+
+            }
+
+    }
+
 
         private void btpAdd_Click(object sender, EventArgs e)
         {
@@ -61,24 +83,25 @@ namespace KakeiboApp
             { Date = userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4 };
             */
 
+            /*
             Money money = new Money
             { Date = dtpDate.Value, Cate = cmbCategory.Text, Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text };
 
             string jsonString = JsonSerializer.Serialize(money);
             File.WriteAllText("money.json", jsonString);
 
+            */
+            
 
-            /*Listver
-
-            var data = new List<Money>
+            var kakeiboList = new List<Money>
             {
-                new Money {Date =userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4}
+                new Money {Date =dtpDate.Value, Cate = selectedCate, Price = userInput3, Memo = userInput4}
             };
 
-             string jsonString = JsonSerializer.Serialize(money);
+             var jsonString = JsonSerializer.Serialize (List<money>);
              File.WriteAllText(filePath, jsonString);
 
-            */
+            
 
 
 
@@ -106,25 +129,10 @@ namespace KakeiboApp
         private void btnShow_Click(object sender, EventArgs e)
         {
             dgvList.DataSource = null;
-            dgvList.DataSource = AppData.Items;
+            dgvList.DataSource = kakeiboList;
 
             MessageBox.Show("検索完了");
 
-            //Jsonファイル読み込み
-            /*
-            string jsonstring = File.ReadAllText("money.json");
-            Money money = JsonSerializer.Deserialize<Money>(jsonstring);
-
-            var kakeiboList = new List<money>();
-
-            kakeiboList.Add({ money.Date});
-            kakeiboList.Add({ money.Cate});
-            kakeiboList.Add({ money.Price});
-            kakeiboList.Add({ money.Memo});
-
-            MessageBox.Show("読み込み完了");
-            */
-            //Jsonファイル読み込み(予備)
 
             string filePath = "money.json";
 
@@ -143,13 +151,6 @@ namespace KakeiboApp
                 {
                     MessageBox.Show("読み込み完了:");
 
-
-                    /*
-                    foreach (var kakeibo in loadedMoney)
-                    {
-                        Console.WriteLine($"Date: {kakeibo.Date}, Cate: {kakeibo.Cate},Price: {kakeibo.Price},Memo: {kakeibo.Memo}");
-                    }
-                    */
                 }
                 else
                 {
@@ -198,26 +199,12 @@ namespace KakeiboApp
             }
 
             dgvList.DataSource = null;
-            dgvList.DataSource = data.ToList();
+            dgvList.DataSource = kakeiboList;
 
             MessageBox.Show("検索完了");
-            /*
+            
             //Jsonファイル読み込み
-            string jsonstring = File.ReadAllText("money.json");
-            Money money = JsonSerializer.Deserialize<Money>(jsonstring);
 
-            var kakeiboList = new List<Money>();
-
-            kakeiboList.Add({ money.Date});
-            kakeiboList.Add({ money.Cate});
-            kakeiboList.Add({ money.Price});
-            kakeiboList.Add({ money.Memo}); 
-
-            MessageBox.Show("読み込み完了");
-            */
-            //Jsonファイル読み込み(予備)
-
-            string filePath = "money.json";
             try
             {
                 if (!File.Exists(filePath))
@@ -225,21 +212,16 @@ namespace KakeiboApp
                     MessageBox.Show("ファイルが存在しません。");
                     return;
                 }
-
-                string readJson = File.ReadAllText(filePath);
-                var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                
+                    string readJson = File.ReadAllText(filePath);
+                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                
 
                 if (kakeiboList != null)
                 {
                     MessageBox.Show("読み込み完了:");
                     dgvList.DataSource = kakeiboList;
 
-                    /*
-                    foreach (var kakeibo in loadedMoney)
-                    {
-                        Console.WriteLine($"Date: {kakeibo.Date}, Cate: {kakeibo.Cate},Price: {kakeibo.Price},Memo: {kakeibo.Memo}");
-                    }
-                    */
                 }
                 else
                 {
@@ -264,6 +246,43 @@ namespace KakeiboApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Jsonファイル読み込み
+            string filePath = "money.json";
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    MessageBox.Show("ファイルが存在しません。");
+                    return;
+                }
+
+                    string readJson = File.ReadAllText(filePath);
+                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+
+
+                if (kakeiboList != null)
+                {
+                    MessageBox.Show("読み込み完了:");
+
+                }
+                else
+                {
+                    MessageBox.Show("データが空です");
+                }
+            }
+
+            catch (JsonException jex)
+            {
+                MessageBox.Show($"JSON形式エラー: {jex.Message}");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"読み込みエラー: {ex.Message}");
+            }
+
+
+
             string jsonString = File.ReadAllText("money.json");
             var moneyList = JsonSerializer.Deserialize<List<Money>>(jsonString);
             var summary = new MonthlySummary();
