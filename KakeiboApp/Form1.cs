@@ -49,6 +49,7 @@ namespace KakeiboApp
             string jsonString = JsonSerializer.Serialize(money);
             File.WriteAllText("money.json,jsonString);
 
+                
                 /*Listver
 
                 var data = new List<Money>
@@ -91,7 +92,59 @@ namespace KakeiboApp
 
             MessageBox.Show("検索完了");
 
+            //Jsonファイル読み込み
+            string jsonstring = File.ReadAllText("money.json");
+            Money money = JsonSerializer.Deserialize<Money>(jsonstring);
+
+            var kakeiboList = new List<money>();
+
+            kakeiboList.Add({ money.Date});
+            kakeiboList.Add({ money.Cate});
+            kakeiboList.Add({ money.Price});
+            kakeiboList.Add({ money.Memo});
+
+            MessageBox.Show("読み込み完了");
+
+            /*Jsonファイル読み込み(予備)
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    MessageBox.Show("ファイルが存在しません。");
+                    return;
+                }
+
+                string readJson = File.ReadAllText(filePath);
+                var loadedMoney = JsonSerializer.Deserialize<List<Money>>(readJson);
+
+                if (loadedMoney != null)
+                {
+                    MessageBox.Show("読み込み完了:");
+                   
             
+                    foreach (var kakeibo in loadedMoney)
+                    {
+                        Console.WriteLine($"Date: {kakeibo.Date}, Cate: {kakeibo.Cate},Price: {kakeibo.Price},Memo: {kakeibo.Memo}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("データが空です");
+                }
+            }
+            
+            catch (JsonException jex)
+            {
+                    MessageBox.Show($"JSON形式エラー: {jex.Message}");
+            }
+            
+            catch (Exception ex)
+            {
+                    MessageBox.Show($"読み込みエラー: {ex.Message}");
+            }
+            */
+
+
         }
 
         private void label5_Click(object sender, EventArgs e)
