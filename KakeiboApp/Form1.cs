@@ -91,7 +91,7 @@ namespace KakeiboApp
                 new Money {Date =dtpDate.Value, Cate = selectedCate, Price = userInput3, Memo = userInput4}
             };
 
-             var jsonString = JsonSerializer.Serialize (List<money>);
+             var jsonString = JsonSerializer.Serialize (List<Money>);
              File.WriteAllText(filePath, jsonString);
 
             
