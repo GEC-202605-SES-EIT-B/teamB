@@ -126,52 +126,6 @@ namespace KakeiboApp
 
         }
 
-        private void btnShow_Click(object sender, EventArgs e)
-        {
-            dgvList.DataSource = null;
-            dgvList.DataSource = kakeiboList;
-
-            MessageBox.Show("検索完了");
-
-
-            string filePath = "money.json";
-
-            try
-            {
-                if (!File.Exists(filePath))
-                {
-                    MessageBox.Show("ファイルが存在しません。");
-                    return;
-                }
-
-                string readJson = File.ReadAllText(filePath);
-                var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
-
-                if (kakeiboList != null)
-                {
-                    MessageBox.Show("読み込み完了:");
-
-                }
-                else
-                {
-                    MessageBox.Show("データが空です");
-                }
-            }
-
-            catch (JsonException jex)
-            {
-                MessageBox.Show($"JSON形式エラー: {jex.Message}");
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show($"読み込みエラー: {ex.Message}");
-            }
-
-
-
-        }
-
         private void label5_Click(object sender, EventArgs e)
         {
 
