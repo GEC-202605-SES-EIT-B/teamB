@@ -47,7 +47,7 @@ namespace KakeiboApp
             { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
 
             string jsonString = JsonSerializer.Serialize(money);
-            File.WriteAllText("money.json,jsonString);
+            File.WriteAllText("money.json",jsonString);
 
                 
                 /*Listver
