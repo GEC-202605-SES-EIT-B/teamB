@@ -11,7 +11,7 @@ namespace KakeiboApp
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-            string filePath = "people.json";
+            string filePath = "money.json";
 
             if (!File.Exists(filePath))
             {
@@ -91,7 +91,7 @@ namespace KakeiboApp
                 new Money {Date =dtpDate.Value, Cate = selectedCate, Price = userInput3, Memo = userInput4}
             };
 
-             var jsonString = JsonSerializer.Serialize (List<money>);
+             var jsonString = JsonSerializer.Serialize (List<Money>);
              File.WriteAllText(filePath, jsonString);
 
             
