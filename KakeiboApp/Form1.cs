@@ -47,27 +47,27 @@ namespace KakeiboApp
             { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
 
             string jsonString = JsonSerializer.Serialize(money);
-            File.WriteAllText("money.json",jsonString);
+            File.WriteAllText("money.json", jsonString);
 
-                
-                /*Listver
 
-                var data = new List<Money>
-                {
-                    new Money {Date =userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4}
-                };
+            /*Listver
 
-                 string jsonString = JsonSerializer.Serialize(money);
-                 File.WriteAllText(filePath, jsonString);
+            var data = new List<Money>
+            {
+                new Money {Date =userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4}
+            };
 
-                */
-            
+             string jsonString = JsonSerializer.Serialize(money);
+             File.WriteAllText(filePath, jsonString);
+
+            */
+
 
 
         }
 
-            
-            private void dtpDate_ValueChanged(object sender, EventArgs e)
+
+        private void dtpDate_ValueChanged(object sender, EventArgs e)
         {
 
         }
@@ -233,8 +233,19 @@ namespace KakeiboApp
 
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var moneyList =JsonSerializer.Deserialize<List<Money>>(jsonString);
+            var summary = new MonthlySummary();
+            summary.Calculate(moneyList, dtpMonth.Value.Year, dtpMonth.Value.Month);
+
+            lblIncome.Text = "収入：" + summary.Income;
+            lblExpense.Text = "支出：" + summary.Expense;
+            lblIBalance.Text = "差額；" + summary.Balance;
+        }
     }
-   }
+}
 
 
 
