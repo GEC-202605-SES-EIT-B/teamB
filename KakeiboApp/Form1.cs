@@ -24,6 +24,15 @@ namespace KakeiboApp
         private void btpAdd_Click(object sender, EventArgs e)
         {
 
+            // ✅ 入力チェック
+            if (string.IsNullOrWhiteSpace(txtAmount.Text) ||
+                string.IsNullOrWhiteSpace(txtMemo.Text) ||
+                string.IsNullOrWhiteSpace(cmbCategory.Text))
+            {
+                MessageBox.Show("無効です");
+                return;
+            }
+
             var item = new ExpenseItem
             {
                 Date = dtpDate.Value,
