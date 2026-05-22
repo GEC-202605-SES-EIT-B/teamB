@@ -98,6 +98,41 @@ namespace KakeiboApp
                     Console.WriteLine($"読み込みエラー: {ex.Message}");
             }
             */
+
+            using System;
+            using System.Collections.Generic;
+            using System.IO;
+            using System.Text.Json;
+
+public class Person
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public int Age { get; set; }
         }
+
+        class Program
+        {
+            static void Main()
+            {
+                string filePath = "people.json";
+
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine("ファイルが見つかりません。");
+                    return;
+                }
+
+                string json = File.ReadAllText(filePath);
+                var people = JsonSerializer.Deserialize<List<Person>>(json);
+
+                foreach (var person in people)
+                {
+                    Console.WriteLine($"{person.Id}: {person.Name} ({person.Age})");
+                }
+            }
+        }
+
     }
+}
 }
