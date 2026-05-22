@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static KakeiboApp.Form1;
 
 
 namespace KakeiboApp
@@ -10,23 +11,23 @@ namespace KakeiboApp
         public int Income { get; set; }
         public int Expense { get; set; }
 
-        public void Calculate(int year,int month)
+        public void Calculate(List<Money> moneyList, int year,int month)
         { 
             Income = 0;
             Expense = 0;
             
-            foreach (var data in AppData.Items)
+            foreach (var data in moneyList)
             {
                 if (data.Date.Year == year &&
                     data.Date.Month == month)
                 {
-                    if (data.Amount > 0)
+                    if (data.Price > 0)
                     {
-                        Income += (int) data.Amount;
+                        Income += (int) data.Price;
                     }
                     else
                     {
-                        Expense += Math.Abs((int) data.Amount);
+                        Expense += Math.Abs((int) data.Price);
                     }
                 }
                 
