@@ -36,15 +36,19 @@ namespace KakeiboApp
 
             MessageBox.Show("登録完了");
 
-
+            /*
             string filePath = "money.json";
-            string userInput1 = dtpDate.Text;
+            DateTime userInput1 = dtpDate.Value;
             string selectedCate = cmbCategory.SelectedCate.Tostring();
-            string userInput3 = txtAmount.Text;
+            int userInput3 = decimal.Parse(txtAmount.Text), //txtAmount.Text;
             string userInput4 = txtMemo.Text;
+          
+            Money money = new Money
+            { Date = userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4 };
+            */
 
             Money money = new Money
-            { Date = userInput1, Cate = selectedCate/*userInput2*/, Price = userInput3, Memo = userInput4 };
+            { Date = dtpDate.Value, Cate = cmbCategory.Text, Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text };
 
             string jsonString = JsonSerializer.Serialize(money);
             File.WriteAllText("money.json",jsonString);
@@ -93,6 +97,7 @@ namespace KakeiboApp
             MessageBox.Show("検索完了");
 
             //Jsonファイル読み込み
+            /*
             string jsonstring = File.ReadAllText("money.json");
             Money money = JsonSerializer.Deserialize<Money>(jsonstring);
 
@@ -104,8 +109,11 @@ namespace KakeiboApp
             kakeiboList.Add({ money.Memo});
 
             MessageBox.Show("読み込み完了");
+            */
+            //Jsonファイル読み込み(予備)
 
-            /*Jsonファイル読み込み(予備)
+            string filePath = "money.json";
+
             try
             {
                 if (!File.Exists(filePath))
@@ -122,10 +130,12 @@ namespace KakeiboApp
                     MessageBox.Show("読み込み完了:");
                    
             
+                    /*
                     foreach (var kakeibo in loadedMoney)
                     {
                         Console.WriteLine($"Date: {kakeibo.Date}, Cate: {kakeibo.Cate},Price: {kakeibo.Price},Memo: {kakeibo.Memo}");
                     }
+                    */
                 }
                 else
                 {
@@ -142,7 +152,7 @@ namespace KakeiboApp
             {
                     MessageBox.Show($"読み込みエラー: {ex.Message}");
             }
-            */
+            
 
 
         }
@@ -177,7 +187,7 @@ namespace KakeiboApp
             dgvList.DataSource = data.ToList();
 
             MessageBox.Show("集計完了");
-
+            /*
             //Jsonファイル読み込み
             string jsonstring = File.ReadAllText("money.json");
             Money money = JsonSerializer.Deserialize<Money>(jsonstring);
@@ -190,8 +200,10 @@ namespace KakeiboApp
             kakeiboList.Add({ money.Memo});
 
             MessageBox.Show("読み込み完了");
+            */
+            //Jsonファイル読み込み(予備)
 
-            /*Jsonファイル読み込み(予備)
+            string filePath = "people.json";
             try
             {
                 if (!File.Exists(filePath))
@@ -207,11 +219,12 @@ namespace KakeiboApp
                 {
                     MessageBox.Show("読み込み完了:");
                    
-            
+                    /*
                     foreach (var kakeibo in loadedMoney)
                     {
                         Console.WriteLine($"Date: {kakeibo.Date}, Cate: {kakeibo.Cate},Price: {kakeibo.Price},Memo: {kakeibo.Memo}");
                     }
+                    */
                 }
                 else
                 {
@@ -228,7 +241,7 @@ namespace KakeiboApp
             {
                     MessageBox.Show($"読み込みエラー: {ex.Message}");
             }
-            */
+            
 
 
 
