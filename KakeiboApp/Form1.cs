@@ -88,7 +88,7 @@ namespace KakeiboApp
 
             var kakeiboList = new List<Money>
             {
-                new Money {Date =dtpDate.Value, Cate = selectedCate, Price = userInput3, Memo = userInput4}
+                new Money {Date =dtpDate.Value, Cate = cmbCategory.Text, Price = userInput3, Memo = userInput4}
             };
 
              var jsonString = JsonSerializer.Serialize (List<Money>);
