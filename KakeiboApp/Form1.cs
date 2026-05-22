@@ -39,7 +39,7 @@ namespace KakeiboApp
 
             string filePath = "money.json";
             string userInput1 = dtpDate.Text;
-            string selectedCate = cmbCategory.SelectedCate.Tostring();
+            string selectedCate = cmbCategory.SelectedItem?.ToString() ?? "";
             string userInput3 = txtAmount.Text;
             string userInput4 = txtMemo.Text;
 
