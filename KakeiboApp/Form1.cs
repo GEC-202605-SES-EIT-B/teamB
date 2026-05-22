@@ -182,7 +182,7 @@ namespace KakeiboApp
             string jsonstring = File.ReadAllText("money.json");
             Money money = JsonSerializer.Deserialize<Money>(jsonstring);
 
-            var kakeiboList = new List<money>();
+            var kakeiboList = new List<Money>();
 
             kakeiboList.Add({ money.Date});
             kakeiboList.Add({ money.Cate});
