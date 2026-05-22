@@ -147,7 +147,7 @@ namespace KakeiboApp
             }
 
             dgvList.DataSource = null;
-            dgvList.DataSource = kakeiboList;
+            dgvList.DataSource = data.ToList();
 
             MessageBox.Show("検索完了");
             
