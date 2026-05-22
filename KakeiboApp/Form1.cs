@@ -249,6 +249,7 @@ namespace KakeiboApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string jsonString = File.ReadAllText("money.json");
             var moneyList =JsonSerializer.Deserialize<List<Money>>(jsonString);
             var summary = new MonthlySummary();
             summary.Calculate(moneyList, dtpMonth.Value.Year, dtpMonth.Value.Month);
