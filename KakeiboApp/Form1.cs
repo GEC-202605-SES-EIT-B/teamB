@@ -193,7 +193,7 @@ namespace KakeiboApp
                 x.Date.Date <= to
             );
 
-            if (cmbFilterCategory.Text != "���ׂ�")
+            if (cmbFilterCategory.Text != "すべて")
             {
                 data = data.Where(x => x.Category == cmbFilterCategory.Text);
             }
@@ -218,7 +218,7 @@ namespace KakeiboApp
             */
             //Jsonファイル読み込み(予備)
 
-            string filePath = "people.json";
+            string filePath = "money.json";
             try
             {
                 if (!File.Exists(filePath))
@@ -233,6 +233,7 @@ namespace KakeiboApp
                 if (kakeiboList != null)
                 {
                     MessageBox.Show("読み込み完了:");
+                    dgvList.DataSource = kakeiboList;
 
                     /*
                     foreach (var kakeibo in loadedMoney)
