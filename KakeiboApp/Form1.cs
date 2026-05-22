@@ -17,7 +17,7 @@ namespace KakeiboApp
         {
             public DateTime Date { get; set; }
             public string Cate { get; set; }
-            public int Price { get; set; }
+            public Decimal Price { get; set; }
             public string Memo { get; set; }
         }
 
