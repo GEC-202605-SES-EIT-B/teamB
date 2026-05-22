@@ -26,7 +26,6 @@ namespace KakeiboApp
 
             // ✅ 入力チェック
             if (string.IsNullOrWhiteSpace(txtAmount.Text) ||
-                string.IsNullOrWhiteSpace(txtMemo.Text) ||
                 string.IsNullOrWhiteSpace(cmbCategory.Text))
             {
                 MessageBox.Show("無効です");
