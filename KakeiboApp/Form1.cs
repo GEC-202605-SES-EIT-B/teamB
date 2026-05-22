@@ -6,12 +6,13 @@ namespace KakeiboApp
    {
     public partial class Form1 : Form
     {
+        string filePath = "money.json";
         public Form1()
         {
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-            string filePath = "money.json";
+            
 
             if (!File.Exists(filePath))
             {
