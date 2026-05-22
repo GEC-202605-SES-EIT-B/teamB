@@ -37,10 +37,6 @@ namespace KakeiboApp
             MessageBox.Show("登録完了");
 
 
-            MessageBox.Show("集計完了");
-
-
-
             string filePath = "money.json";
             string userInput1 = dtpDate.Text;
             string selectedCate = cmbCategory.SelectedCate.Tostring();
