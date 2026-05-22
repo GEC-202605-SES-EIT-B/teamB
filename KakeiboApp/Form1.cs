@@ -92,7 +92,7 @@ namespace KakeiboApp
                 new Money {Date =dtpDate.Value, Cate = cmbCategory.Text, Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text}
             };
 
-             var jsonString = JsonSerializer.Serialize (List<Money>);
+             var jsonString = JsonSerializer.Serialize (kakeiboList);
              File.WriteAllText(filePath, jsonString);
 
             
