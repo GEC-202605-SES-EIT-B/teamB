@@ -33,6 +33,12 @@ namespace KakeiboApp
                 return;
             }
 
+            if (!decimal.TryParse(txtAmount.Text, out decimal amount))
+            {
+                MessageBox.Show("金額が不正です");
+                return;
+            }
+
             var item = new ExpenseItem
             {
                 Date = dtpDate.Value,
