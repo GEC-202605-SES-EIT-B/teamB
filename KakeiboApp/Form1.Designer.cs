@@ -214,6 +214,7 @@
             cmbFilterCategory.Name = "cmbFilterCategory";
             cmbFilterCategory.Size = new Size(126, 33);
             cmbFilterCategory.TabIndex = 6;
+            cmbFilterCategory.SelectedIndexChanged += cmbFilterCategory_SelectedIndexChanged;
             // 
             // label6
             // 

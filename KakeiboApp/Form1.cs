@@ -128,8 +128,8 @@ namespace KakeiboApp
                 if (kakeiboList != null)
                 {
                     MessageBox.Show("読み込み完了:");
-                   
-            
+
+
                     /*
                     foreach (var kakeibo in loadedMoney)
                     {
@@ -142,17 +142,17 @@ namespace KakeiboApp
                     MessageBox.Show("データが空です");
                 }
             }
-            
+
             catch (JsonException jex)
             {
-                    MessageBox.Show($"JSON形式エラー: {jex.Message}");
+                MessageBox.Show($"JSON形式エラー: {jex.Message}");
             }
-            
+
             catch (Exception ex)
             {
-                    MessageBox.Show($"読み込みエラー: {ex.Message}");
+                MessageBox.Show($"読み込みエラー: {ex.Message}");
             }
-            
+
 
 
         }
@@ -186,7 +186,7 @@ namespace KakeiboApp
             dgvList.DataSource = null;
             dgvList.DataSource = data.ToList();
 
-            MessageBox.Show("集計完了");
+            MessageBox.Show("検索完了");
             /*
             //Jsonファイル読み込み
             string jsonstring = File.ReadAllText("money.json");
@@ -218,7 +218,7 @@ namespace KakeiboApp
                 if (kakeiboList != null)
                 {
                     MessageBox.Show("読み込み完了:");
-                   
+
                     /*
                     foreach (var kakeibo in loadedMoney)
                     {
@@ -231,17 +231,17 @@ namespace KakeiboApp
                     MessageBox.Show("データが空です");
                 }
             }
-            
+
             catch (JsonException jex)
             {
-                    MessageBox.Show($"JSON形式エラー: {jex.Message}");
+                MessageBox.Show($"JSON形式エラー: {jex.Message}");
             }
-            
+
             catch (Exception ex)
             {
-                    MessageBox.Show($"読み込みエラー: {ex.Message}");
+                MessageBox.Show($"読み込みエラー: {ex.Message}");
             }
-            
+
 
 
 
@@ -250,13 +250,18 @@ namespace KakeiboApp
         private void button1_Click(object sender, EventArgs e)
         {
             string jsonString = File.ReadAllText("money.json");
-            var moneyList =JsonSerializer.Deserialize<List<Money>>(jsonString);
+            var moneyList = JsonSerializer.Deserialize<List<Money>>(jsonString);
             var summary = new MonthlySummary();
             summary.Calculate(moneyList, dtpMonth.Value.Year, dtpMonth.Value.Month);
 
             lblIncome.Text = "収入：" + summary.Income;
             lblExpense.Text = "支出：" + summary.Expense;
             lblIBalance.Text = "差額；" + summary.Balance;
+        }
+
+        private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
