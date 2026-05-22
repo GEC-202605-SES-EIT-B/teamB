@@ -123,9 +123,9 @@ namespace KakeiboApp
                 }
 
                 string readJson = File.ReadAllText(filePath);
-                var loadedMoney = JsonSerializer.Deserialize<List<Money>>(readJson);
+                var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
-                if (loadedMoney != null)
+                if (kakeiboList != null)
                 {
                     MessageBox.Show("読み込み完了:");
                    
@@ -213,9 +213,9 @@ namespace KakeiboApp
                 }
 
                 string readJson = File.ReadAllText(filePath);
-                var loadedMoney = JsonSerializer.Deserialize<List<Money>>(readJson);
+                var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
-                if (loadedMoney != null)
+                if (kakeiboList != null)
                 {
                     MessageBox.Show("読み込み完了:");
                    
