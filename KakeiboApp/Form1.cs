@@ -15,7 +15,7 @@ namespace KakeiboApp
 
         public class Money
         {
-            public int Date { get; set; }
+            public DateTime Date { get; set; }
             public string Cate { get; set; }
             public int Price { get; set; }
             public string Memo { get; set; }
