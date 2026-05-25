@@ -70,25 +70,6 @@ namespace KakeiboApp
 
             MessageBox.Show("登録完了");
 
-            /*
-            string filePath = "money.json";
-            DateTime userInput1 = dtpDate.Value;
-            string selectedCate = cmbCategory.SelectedCate.Tostring();
-            int userInput3 = decimal.Parse(txtAmount.Text), //txtAmount.Text;
-            string userInput4 = txtMemo.Text;
-          
-            Money money = new Money
-            { Date = userInput1, Cate = selectedCate, Price = userInput3, Memo = userInput4 };
-            */
-
-            /*
-            Money money = new Money
-            { Date = dtpDate.Value, Cate = cmbCategory.Text, Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text };
-
-            string jsonString = JsonSerializer.Serialize(money);
-            File.WriteAllText("money.json", jsonString);
-
-            */
 
 
             kakeiboList.Add(
