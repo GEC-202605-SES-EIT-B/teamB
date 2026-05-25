@@ -1,14 +1,17 @@
 ﻿using System.Linq;
 using System.IO;
 using System.Text.Json;
+using System.Drawing.Text;
 
 namespace KakeiboApp
    {
     public partial class Form1 : Form
     {
+        private List<Money> kakeiboList = new List<Money>();
+
         string filePath = "money.json";
         public Form1()
-        {
+        { 
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
@@ -20,7 +23,7 @@ namespace KakeiboApp
                 return;
             }
             string readJson = File.ReadAllText(filePath);
-            var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+            kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
             if (kakeiboList != null)
             {
@@ -85,12 +88,17 @@ namespace KakeiboApp
             File.WriteAllText("money.json", jsonString);
 
             */
-            
 
-            var kakeiboList = new List<Money>
-            {
-                new Money {Date =dtpDate.Value, Cate = cmbCategory.Text, Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text}
-            };
+
+            kakeiboList.Add(
+              new Money
+              {
+                  Date = dtpDate.Value,
+                  Cate = cmbCategory.Text,
+                  Price = decimal.Parse(txtAmount.Text),
+                  Memo = txtMemo.Text
+              }
+             );
 
              var jsonString = JsonSerializer.Serialize (kakeiboList);
              File.WriteAllText(filePath, jsonString);
@@ -162,7 +170,7 @@ namespace KakeiboApp
                 }
                 
                     string readJson = File.ReadAllText(filePath);
-                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                    kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
                 
 
                 if (kakeiboList != null)
@@ -195,7 +203,6 @@ namespace KakeiboApp
         private void button1_Click(object sender, EventArgs e)
         {
             //Jsonファイル読み込み
-            string filePath = "money.json";
             try
             {
                 if (!File.Exists(filePath))
@@ -205,7 +212,7 @@ namespace KakeiboApp
                 }
 
                     string readJson = File.ReadAllText(filePath);
-                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                    kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
 
                 if (kakeiboList != null)
