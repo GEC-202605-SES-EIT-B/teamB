@@ -271,7 +271,11 @@ namespace KakeiboApp
 
             barSeries.ChartType = SeriesChartType.Column;
             chart2.ChartAreas[0].AxisY.LabelStyle.Format = "#,##0";
+            chart2.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Meiryo", 8);
+            chart2.ChartAreas[0].AxisY.LabelStyle.Font = new Font("Meiryo", 8);
+
             barSeries.IsXValueIndexed = true;
+            barSeries.Font = new Font("Meiryo", 7);
 
             foreach (var item in summary.CategoryTotals)
             {
