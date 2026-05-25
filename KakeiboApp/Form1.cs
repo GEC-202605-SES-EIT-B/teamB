@@ -224,9 +224,9 @@ namespace KakeiboApp
             var summary = new MonthlySummary();
             summary.Calculate(moneyList, dtpMonth.Value.Year, dtpMonth.Value.Month);
 
-            lblIncome.Text = "収入：" + summary.Income + "円";
-            lblExpense.Text = "支出：" + summary.Expense + "円";
-            lblIBalance.Text = "差額；" + summary.Balance + "円";
+            lblIncome.Text = "収入：" + summary.Income.ToString("#,##0") + "円";
+            lblExpense.Text = "支出：" + summary.Expense.ToString("#,##0") + "円";
+            lblIBalance.Text = "差額；" + summary.Balance.ToString("#,##0") + "円";
 
             // 円グラフの表示
             chart1.Series.Clear();
@@ -244,6 +244,31 @@ namespace KakeiboApp
             series.Points[1].Color = Color.Orange;
 
             chart1.Series.Add(series);
+
+            // カテゴリ別棒グラフ
+            chart2.Series.Clear();
+
+            Series barSeries = new Series("カテゴリ別");
+
+            barSeries.ChartType = SeriesChartType.Column;
+            chart2.ChartAreas[0].AxisY.LabelStyle.Format = "#,##0";
+            barSeries.IsXValueIndexed = true;
+
+            foreach (var item in summary.CategoryTotals)
+            {
+
+                if (item.Key == "給与")
+                {
+                    continue;
+                }
+                int pointIndex = barSeries.Points.AddY(item.Value);
+
+                barSeries.Points[pointIndex].AxisLabel = item.Key;
+                barSeries.Points[pointIndex].Label = item.Value.ToString("#,##0円");
+            }
+
+
+            chart2.Series.Add(barSeries);
         }
 
         private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
