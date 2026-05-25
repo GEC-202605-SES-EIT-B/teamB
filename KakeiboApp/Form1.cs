@@ -44,7 +44,7 @@ namespace KakeiboApp
         private void btpAdd_Click(object sender, EventArgs e)
         {
 
-            // ✅ 入力チェック
+            // 入力チェック
             if (string.IsNullOrWhiteSpace(txtAmount.Text) ||
                 string.IsNullOrWhiteSpace(cmbCategory.Text))
             {
@@ -145,14 +145,14 @@ namespace KakeiboApp
             var from = dtpFrom.Value.Date;
             var to = dtpTo.Value.Date;
 
-            var data = AppData.Items.Where(x =>
+            var data = kakeiboList.Where(x =>
                 x.Date.Date >= from &&
                 x.Date.Date <= to
             );
 
             if (cmbFilterCategory.Text != "すべて")
             {
-                data = data.Where(x => x.Category == cmbFilterCategory.Text);
+                data = data.Where(x => x.Cate == cmbFilterCategory.Text);
             }
 
             dgvList.DataSource = null;
@@ -278,36 +278,50 @@ namespace KakeiboApp
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            // ✅ 行が選択されているかチェック
             if (dgvList.CurrentRow == null)
             {
                 MessageBox.Show("削除する行を選択してください");
                 return;
             }
 
-            // ✅ データ読み込み
-            var selevted = dgvList.CurrentRow.DataBoundItem as Money;
+            // 今表示されているデータ取得
+            var currentList = dgvList.DataSource as List<Money>;
 
-            if (selevted == null)
+            if (currentList == null)
             {
-                MessageBox.Show("削除できません");
+                MessageBox.Show("データ取得エラー");
+                return;
+            }
+
+            int index = dgvList.CurrentRow.Index;
+
+            if (index < 0 || index >= currentList.Count)
+            {
+                MessageBox.Show("削除対象が不正です");
                 return;
             }
 
             var result = MessageBox.Show("削除しますか？", "確認", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if (result != DialogResult.Yes)
                 return;
 
-            kakeiboList.Remove(selected);
+            // 表示リストから削除
+            var itemToRemove = currentList[index];
+            currentList.RemoveAt(index);
 
+            //元のリストからも削除
+            kakeiboList.Remove(itemToRemove);
+
+            //保存
             var json = JsonSerializer.Serialize(kakeiboList);
             File.WriteAllText(filePath, json);
 
+            //再表示
             dgvList.DataSource = null;
             dgvList.DataSource = kakeiboList;
-        }
 
+            MessageBox.Show("削除完了");
+        }
     }
 }
 
