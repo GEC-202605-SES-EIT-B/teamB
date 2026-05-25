@@ -32,7 +32,9 @@ namespace KakeiboApp
         {
             public DateTime Date { get; set; }
             public string Cate { get; set; }
+            public string Inout  { get; set; }
             public Decimal Price { get; set; }
+            public Decimal Expense { get; set; }
             public string Memo { get; set; }
 
         }
@@ -54,10 +56,12 @@ namespace KakeiboApp
                 return;
             }
 
+
             var item = new ExpenseItem
             {
                 Date = dtpDate.Value,
                 Category = cmbCategory.Text,
+                Inout = cmbInout.Text,
                 Amount = decimal.Parse(txtAmount.Text),
                 Memo = txtMemo.Text
             };
@@ -89,7 +93,7 @@ namespace KakeiboApp
 
             var kakeiboList = new List<Money>
             {
-                new Money {Date =dtpDate.Value, Cate = cmbCategory.Text, Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text}
+                new Money {Date =dtpDate.Value, Cate = cmbCategory.Text, Inout = cmbInout.Text,  Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text}
             };
 
              var jsonString = JsonSerializer.Serialize (kakeiboList);
