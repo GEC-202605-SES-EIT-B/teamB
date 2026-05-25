@@ -36,6 +36,7 @@ namespace KakeiboApp
         {
             public DateTime Date { get; set; }
             public string Cate { get; set; }
+            public string Inout { get; set; }
             public Decimal Price { get; set; }
             public string Memo { get; set; }
 
@@ -62,6 +63,7 @@ namespace KakeiboApp
             {
                 Date = dtpDate.Value,
                 Category = cmbCategory.Text,
+                Inout = cmbCategory.Text,
                 Amount = decimal.Parse(txtAmount.Text),
                 Memo = txtMemo.Text
             };
@@ -77,6 +79,7 @@ namespace KakeiboApp
               {
                   Date = dtpDate.Value,
                   Cate = cmbCategory.Text,
+                  Inout = cmbInout.Text,
                   Price = decimal.Parse(txtAmount.Text),
                   Memo = txtMemo.Text
               }
@@ -333,6 +336,26 @@ namespace KakeiboApp
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)//関係ない
+        {
+
+        }
+
+        private void cmbInout2_SelectedIndexChanged(object sender, EventArgs e)//一覧画面の入出金コンボボックス
+        {
+
+        }
+
+        private void dtpTo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)//関係ない
         {
 
         }

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
             cmbCategory = new ComboBox();
+            cmbInout = new ComboBox();
+            cmbInout2 = new ComboBox();
             btpAdd = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -41,7 +43,9 @@
             label4 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label8 = new Label();
             tabPage2 = new TabPage();
+            label9 = new Label();
             btnDelete = new Button();
             btnSearch = new Button();
             label7 = new Label();
@@ -100,7 +104,25 @@
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(150, 33);
             cmbCategory.TabIndex = 3;
-            cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
+            cmbCategory.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // cmbInout
+            // 
+            cmbInout.FormattingEnabled = true;
+            cmbInout.Items.AddRange(new object[] { "支出", "収入" });
+            cmbInout.Location = new Point(191, 250);
+            cmbInout.Name = "cmbInout";
+            cmbInout.Size = new Size(91, 33);
+            cmbInout.TabIndex = 11;
+            // 
+            // cmbInout2
+            // 
+            cmbInout2.Items.AddRange(new object[] { "支出", "収入" });
+            cmbInout2.Location = new Point(558, 41);
+            cmbInout2.Name = "cmbInout2";
+            cmbInout2.Size = new Size(92, 33);
+            cmbInout2.TabIndex = 0;
+            cmbInout2.SelectedIndexChanged += cmbInout2_SelectedIndexChanged;
             // 
             // btpAdd
             // 
@@ -161,6 +183,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(dtpDate);
             tabPage1.Controls.Add(btpAdd);
             tabPage1.Controls.Add(label3);
@@ -169,6 +192,7 @@
             tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(cmbCategory);
+            tabPage1.Controls.Add(cmbInout);
             tabPage1.Controls.Add(txtAmount);
             tabPage1.Location = new Point(4, 34);
             tabPage1.Name = "tabPage1";
@@ -178,8 +202,20 @@
             tabPage1.Text = "入力";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(191, 189);
+            label8.Name = "label8";
+            label8.Size = new Size(91, 25);
+            label8.TabIndex = 10;
+            label8.Text = "収入/支出";
+            label8.Click += label8_Click;
+            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label9);
+            tabPage2.Controls.Add(cmbInout2);
             tabPage2.Controls.Add(btnDelete);
             tabPage2.Controls.Add(btnSearch);
             tabPage2.Controls.Add(label7);
@@ -197,6 +233,16 @@
             tabPage2.Text = "一覧";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(558, 13);
+            label9.Name = "label9";
+            label9.Size = new Size(91, 25);
+            label9.TabIndex = 10;
+            label9.Text = "収入/支出";
+            label9.Click += label9_Click;
+            // 
             // btnDelete
             // 
             btnDelete.Location = new Point(638, 324);
@@ -209,7 +255,7 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(627, 28);
+            btnSearch.Location = new Point(656, 40);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(112, 34);
             btnSearch.TabIndex = 8;
@@ -220,7 +266,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(449, 3);
+            label7.Location = new Point(402, 15);
             label7.Name = "label7";
             label7.Size = new Size(64, 25);
             label7.TabIndex = 7;
@@ -231,7 +277,7 @@
             // 
             cmbFilterCategory.FormattingEnabled = true;
             cmbFilterCategory.Items.AddRange(new object[] { "すべて", "生活費", "食費", "娯楽費", "給与", "その他" });
-            cmbFilterCategory.Location = new Point(450, 30);
+            cmbFilterCategory.Location = new Point(402, 41);
             cmbFilterCategory.Name = "cmbFilterCategory";
             cmbFilterCategory.Size = new Size(150, 33);
             cmbFilterCategory.TabIndex = 6;
@@ -240,7 +286,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(234, 3);
+            label6.Location = new Point(202, 15);
             label6.Name = "label6";
             label6.Size = new Size(66, 25);
             label6.TabIndex = 5;
@@ -249,7 +295,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 3);
+            label5.Location = new Point(3, 15);
             label5.Name = "label5";
             label5.Size = new Size(66, 25);
             label5.TabIndex = 4;
@@ -258,14 +304,15 @@
             // 
             // dtpTo
             // 
-            dtpTo.Location = new Point(230, 30);
+            dtpTo.Location = new Point(202, 43);
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new Size(191, 31);
             dtpTo.TabIndex = 3;
+            dtpTo.ValueChanged += dtpTo_ValueChanged;
             // 
             // dtpFrom
             // 
-            dtpFrom.Location = new Point(20, 30);
+            dtpFrom.Location = new Point(3, 43);
             dtpFrom.Name = "dtpFrom";
             dtpFrom.Size = new Size(191, 31);
             dtpFrom.TabIndex = 2;
@@ -298,8 +345,8 @@
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea3);
             chart2.Location = new Point(17, 124);
             chart2.Name = "chart2";
             chart2.Size = new Size(490, 232);
@@ -308,8 +355,8 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea4);
             chart1.Location = new Point(513, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
@@ -424,5 +471,9 @@
         private Button btnDelete;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private FileSystemWatcher fileSystemWatcher1;
+        private ComboBox cmbInout;
+        private ComboBox cmbInout2;
+        private Label label8;
+        private Label label9;
     }
 }
