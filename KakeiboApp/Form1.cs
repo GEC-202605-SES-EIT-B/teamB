@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.Json;
 using System.Drawing.Text;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace KakeiboApp
    {
@@ -11,11 +12,11 @@ namespace KakeiboApp
 
         string filePath = "money.json";
         public Form1()
-        { 
+        {
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-            
+
 
             if (!File.Exists(filePath))
             {
@@ -100,10 +101,10 @@ namespace KakeiboApp
               }
              );
 
-             var jsonString = JsonSerializer.Serialize (kakeiboList);
-             File.WriteAllText(filePath, jsonString);
+            var jsonString = JsonSerializer.Serialize(kakeiboList);
+            File.WriteAllText(filePath, jsonString);
 
-            
+
 
 
 
@@ -158,7 +159,7 @@ namespace KakeiboApp
             dgvList.DataSource = data.ToList();
 
             MessageBox.Show("検索完了");
-            
+
             //Jsonファイル読み込み
 
             try
@@ -168,10 +169,10 @@ namespace KakeiboApp
                     MessageBox.Show("ファイルが存在しません。");
                     return;
                 }
-                
-                    string readJson = File.ReadAllText(filePath);
-                    kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
-                
+
+                string readJson = File.ReadAllText(filePath);
+                kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+
 
                 if (kakeiboList != null)
                 {
@@ -199,7 +200,7 @@ namespace KakeiboApp
 
 
         }
-
+        // 月次サマリー　集計ボタン
         private void button1_Click(object sender, EventArgs e)
         {
             //Jsonファイル読み込み
@@ -211,8 +212,8 @@ namespace KakeiboApp
                     return;
                 }
 
-                    string readJson = File.ReadAllText(filePath);
-                    kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                string readJson = File.ReadAllText(filePath);
+                kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
 
                 if (kakeiboList != null)
@@ -243,9 +244,26 @@ namespace KakeiboApp
             var summary = new MonthlySummary();
             summary.Calculate(moneyList, dtpMonth.Value.Year, dtpMonth.Value.Month);
 
-            lblIncome.Text = "収入：" + summary.Income;
-            lblExpense.Text = "支出：" + summary.Expense;
-            lblIBalance.Text = "差額；" + summary.Balance;
+            lblIncome.Text = "収入：" + summary.Income + "円";
+            lblExpense.Text = "支出：" + summary.Expense + "円";
+            lblIBalance.Text = "差額；" + summary.Balance + "円";
+
+            // 円グラフの表示
+            chart1.Series.Clear();
+            chart1.Legends.Clear();
+
+            Series series = new Series();
+
+            series.ChartType = SeriesChartType.Pie;　
+            series["PieStartAngle"] = "270";
+
+            series.Points.AddXY("収入", summary.Income);
+            series.Points.AddXY("支出", summary.Expense);
+
+            series.Points[0].Color = Color.RoyalBlue;
+            series.Points[1].Color = Color.Orange;
+
+            chart1.Series.Add(series);
         }
 
         private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
