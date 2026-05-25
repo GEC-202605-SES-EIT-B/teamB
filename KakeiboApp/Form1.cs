@@ -254,6 +254,7 @@ namespace KakeiboApp
             Series barSeries = new Series("カテゴリ別");
 
             barSeries.ChartType = SeriesChartType.Column;
+            barSeries.Color = Color.Orange;
             chart2.ChartAreas[0].AxisY.LabelStyle.Format = "#,##0";
             chart2.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Meiryo", 8);
             chart2.ChartAreas[0].AxisY.LabelStyle.Font = new Font("Meiryo", 8);
