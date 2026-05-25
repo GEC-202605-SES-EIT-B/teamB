@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
@@ -51,18 +52,22 @@
             dtpFrom = new DateTimePicker();
             dgvList = new DataGridView();
             tabPage3 = new TabPage();
+            chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             button1 = new Button();
             lblIBalance = new Label();
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
+            fileSystemWatcher1 = new FileSystemWatcher();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvList).BeginInit();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
             // dtpDate
@@ -275,6 +280,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(chart2);
             tabPage3.Controls.Add(chart1);
             tabPage3.Controls.Add(button1);
             tabPage3.Controls.Add(lblIBalance);
@@ -289,11 +295,21 @@
             tabPage3.Text = "月次サマリ";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // chart2
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea1);
+            chart2.Location = new Point(17, 124);
+            chart2.Name = "chart2";
+            chart2.Size = new Size(490, 232);
+            chart2.TabIndex = 6;
+            chart2.Text = "chart2";
+            // 
             // chart1
             // 
             chartArea2.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea2);
-            chart1.Location = new Point(463, 124);
+            chart1.Location = new Point(513, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
             chart1.TabIndex = 5;
@@ -301,7 +317,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(548, 55);
+            button1.Location = new Point(395, 6);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 4;
@@ -312,7 +328,7 @@
             // lblIBalance
             // 
             lblIBalance.AutoSize = true;
-            lblIBalance.Location = new Point(51, 309);
+            lblIBalance.Location = new Point(17, 90);
             lblIBalance.Name = "lblIBalance";
             lblIBalance.Size = new Size(48, 25);
             lblIBalance.TabIndex = 3;
@@ -321,7 +337,7 @@
             // lblExpense
             // 
             lblExpense.AutoSize = true;
-            lblExpense.Location = new Point(51, 206);
+            lblExpense.Location = new Point(17, 65);
             lblExpense.Name = "lblExpense";
             lblExpense.Size = new Size(48, 25);
             lblExpense.TabIndex = 2;
@@ -330,7 +346,7 @@
             // lblIncome
             // 
             lblIncome.AutoSize = true;
-            lblIncome.Location = new Point(51, 105);
+            lblIncome.Location = new Point(17, 40);
             lblIncome.Name = "lblIncome";
             lblIncome.Size = new Size(48, 25);
             lblIncome.TabIndex = 1;
@@ -346,6 +362,11 @@
             dtpMonth.Size = new Size(300, 31);
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
+            // 
+            // fileSystemWatcher1
+            // 
+            fileSystemWatcher1.EnableRaisingEvents = true;
+            fileSystemWatcher1.SynchronizingObject = this;
             // 
             // Form1
             // 
@@ -364,7 +385,9 @@
             ((System.ComponentModel.ISupportInitialize)dgvList).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
         }
 
@@ -398,5 +421,7 @@
         private Button btnSearch;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private Button btnDelete;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private FileSystemWatcher fileSystemWatcher1;
     }
 }
