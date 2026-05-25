@@ -12,7 +12,7 @@ namespace KakeiboApp
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-            
+
 
             if (!File.Exists(filePath))
             {
@@ -32,7 +32,7 @@ namespace KakeiboApp
         {
             public DateTime Date { get; set; }
             public string Cate { get; set; }
-            public string Inout  { get; set; }
+            public string Inout { get; set; }
             public Decimal Price { get; set; }
             public Decimal Expense { get; set; }
             public string Memo { get; set; }
@@ -89,17 +89,17 @@ namespace KakeiboApp
             File.WriteAllText("money.json", jsonString);
 
             */
-            
+
 
             var kakeiboList = new List<Money>
             {
                 new Money {Date =dtpDate.Value, Cate = cmbCategory.Text, Inout = cmbInout.Text,  Price = decimal.Parse(txtAmount.Text), Memo = txtMemo.Text}
             };
 
-             var jsonString = JsonSerializer.Serialize (kakeiboList);
-             File.WriteAllText(filePath, jsonString);
+            var jsonString = JsonSerializer.Serialize(kakeiboList);
+            File.WriteAllText(filePath, jsonString);
 
-            
+
 
 
 
@@ -121,6 +121,10 @@ namespace KakeiboApp
 
 
 
+
+        }
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
 
         }
 
@@ -154,7 +158,7 @@ namespace KakeiboApp
             dgvList.DataSource = data.ToList();
 
             MessageBox.Show("検索完了");
-            
+
             //Jsonファイル読み込み
 
             try
@@ -164,10 +168,10 @@ namespace KakeiboApp
                     MessageBox.Show("ファイルが存在しません。");
                     return;
                 }
-                
-                    string readJson = File.ReadAllText(filePath);
-                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
-                
+
+                string readJson = File.ReadAllText(filePath);
+                var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+
 
                 if (kakeiboList != null)
                 {
@@ -208,8 +212,8 @@ namespace KakeiboApp
                     return;
                 }
 
-                    string readJson = File.ReadAllText(filePath);
-                    var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                string readJson = File.ReadAllText(filePath);
+                var kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
 
                 if (kakeiboList != null)
@@ -245,10 +249,7 @@ namespace KakeiboApp
             lblIBalance.Text = "差額；" + summary.Balance;
         }
 
-        private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 }
 
