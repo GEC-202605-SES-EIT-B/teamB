@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -43,6 +41,7 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            btnDelete = new Button();
             btnSearch = new Button();
             label7 = new Label();
             cmbFilterCategory = new ComboBox();
@@ -52,13 +51,12 @@
             dtpFrom = new DateTimePicker();
             dgvList = new DataGridView();
             tabPage3 = new TabPage();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             button1 = new Button();
             lblIBalance = new Label();
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
-            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            btnDelete = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -77,14 +75,14 @@
             // 
             // txtMemo
             // 
-            txtMemo.Location = new Point(606, 235);
+            txtMemo.Location = new Point(606, 237);
             txtMemo.Name = "txtMemo";
             txtMemo.Size = new Size(150, 31);
             txtMemo.TabIndex = 1;
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(356, 235);
+            txtAmount.Location = new Point(339, 237);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(150, 31);
             txtAmount.TabIndex = 2;
@@ -93,7 +91,7 @@
             // 
             cmbCategory.FormattingEnabled = true;
             cmbCategory.Items.AddRange(new object[] { "生活費", "食費", "娯楽費", "給与", "その他" });
-            cmbCategory.Location = new Point(17, 235);
+            cmbCategory.Location = new Point(20, 237);
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(182, 33);
             cmbCategory.TabIndex = 3;
@@ -120,7 +118,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(406, 189);
+            label2.Location = new Point(397, 189);
             label2.Name = "label2";
             label2.Size = new Size(48, 25);
             label2.TabIndex = 6;
@@ -192,6 +190,16 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "一覧";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(638, 324);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(112, 34);
+            btnDelete.TabIndex = 9;
+            btnDelete.Text = "削除";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += button2_Click;
             // 
             // btnSearch
             // 
@@ -281,6 +289,16 @@
             tabPage3.Text = "月次サマリ";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            chart1.Location = new Point(463, 124);
+            chart1.Name = "chart1";
+            chart1.Size = new Size(267, 232);
+            chart1.TabIndex = 5;
+            chart1.Text = "chart1";
+            // 
             // button1
             // 
             button1.Location = new Point(633, 45);
@@ -328,26 +346,6 @@
             dtpMonth.Size = new Size(300, 31);
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
-            // 
-            // chart1
-            // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
-            chart1.Location = new Point(463, 124);
-            chart1.Name = "chart1";
-            chart1.Size = new Size(267, 232);
-            chart1.TabIndex = 5;
-            chart1.Text = "chart1";
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(638, 324);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(112, 34);
-            btnDelete.TabIndex = 9;
-            btnDelete.Text = "削除";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += button2_Click;
             // 
             // Form1
             // 
