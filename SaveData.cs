@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.IO;
 using System.Text.Json;
 
@@ -98,7 +98,7 @@ namespace KakeiboApp
                     Console.WriteLine($"読み込みエラー: {ex.Message}");
             }
             */
-
+/*
             using System;
             using System.Collections.Generic;
             using System.IO;
@@ -136,3 +136,4 @@ public class Person
     }
 }
 }
+*/
