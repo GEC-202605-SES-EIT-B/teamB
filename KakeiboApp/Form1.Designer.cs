@@ -54,6 +54,7 @@
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
+            btnDelete = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -170,6 +171,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnDelete);
             tabPage2.Controls.Add(btnSearch);
             tabPage2.Controls.Add(label7);
             tabPage2.Controls.Add(cmbFilterCategory);
@@ -188,7 +190,7 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(632, 28);
+            btnSearch.Location = new Point(627, 28);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(112, 34);
             btnSearch.TabIndex = 8;
@@ -321,6 +323,16 @@
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
             // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(638, 324);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(112, 34);
+            btnDelete.TabIndex = 9;
+            btnDelete.Text = "削除";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -329,6 +341,7 @@
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
@@ -368,5 +381,6 @@
         private ComboBox cmbFilterCategory;
         private Label label6;
         private Button btnSearch;
+        private Button btnDelete;
     }
 }

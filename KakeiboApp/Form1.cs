@@ -11,11 +11,11 @@ namespace KakeiboApp
 
         string filePath = "money.json";
         public Form1()
-        { 
+        {
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-            
+
 
             if (!File.Exists(filePath))
             {
@@ -100,10 +100,10 @@ namespace KakeiboApp
               }
              );
 
-             var jsonString = JsonSerializer.Serialize (kakeiboList);
-             File.WriteAllText(filePath, jsonString);
+            var jsonString = JsonSerializer.Serialize(kakeiboList);
+            File.WriteAllText(filePath, jsonString);
 
-            
+
 
 
 
@@ -158,7 +158,7 @@ namespace KakeiboApp
             dgvList.DataSource = data.ToList();
 
             MessageBox.Show("検索完了");
-            
+
             //Jsonファイル読み込み
 
             try
@@ -168,10 +168,10 @@ namespace KakeiboApp
                     MessageBox.Show("ファイルが存在しません。");
                     return;
                 }
-                
-                    string readJson = File.ReadAllText(filePath);
-                    kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
-                
+
+                string readJson = File.ReadAllText(filePath);
+                kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+
 
                 if (kakeiboList != null)
                 {
@@ -211,8 +211,8 @@ namespace KakeiboApp
                     return;
                 }
 
-                    string readJson = File.ReadAllText(filePath);
-                    kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
+                string readJson = File.ReadAllText(filePath);
+                kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
 
                 if (kakeiboList != null)
@@ -252,8 +252,47 @@ namespace KakeiboApp
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            // ✅ 行が選択されているかチェック
+            if (dgvList.CurrentRow == null)
+            {
+                MessageBox.Show("削除する行を選択してください");
+                return;
+            }
+
+            // ✅ データ読み込み
+            var selevted = dgvList.CurrentRow.DataBoundItem as Money;
+
+            if (selevted == null)
+            {
+                MessageBox.Show("削除できません");
+                return;
+            }
+
+            var result = MessageBox.Show("削除しますか？", "確認", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                return;
+
+            kakeiboList.Remove(selected);
+
+            var json = JsonSerializer.Serialize(kakeiboList);
+            File.WriteAllText(filePath, json);
+
+            dgvList.DataSource = null;
+            dgvList.DataSource = kakeiboList;
+        }
+
     }
 }
+
 
 
 
