@@ -125,6 +125,8 @@ namespace KakeiboApp
         private void btnSearch_Click(object sender, EventArgs e)
         {
 
+
+            
             var from = dtpFrom.Value.Date;
             var to = dtpTo.Value.Date;
 
@@ -138,8 +140,12 @@ namespace KakeiboApp
                 data = data.Where(x => x.Cate == cmbFilterCategory.Text);
             }
 
-            dgvList.DataSource = null;
-            dgvList.DataSource = data.ToList();
+            string type = cmbFilterType.Text.Trim();
+
+            if (type == "支出" || type == "収入")
+            {
+                data = data.Where(x => x.Inout == type);
+            }
 
             MessageBox.Show("検索完了");
 
@@ -179,8 +185,8 @@ namespace KakeiboApp
                 MessageBox.Show($"読み込みエラー: {ex.Message}");
             }
 
-
-
+            dgvList.DataSource = null;
+            dgvList.DataSource = data.ToList();
 
         }
         // 月次サマリー　集計ボタン

@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
             cmbCategory = new ComboBox();
             cmbInout = new ComboBox();
-            cmbInout2 = new ComboBox();
+            cmbFilterType = new ComboBox();
             btpAdd = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -115,14 +115,14 @@
             cmbInout.Size = new Size(91, 33);
             cmbInout.TabIndex = 11;
             // 
-            // cmbInout2
+            // cmbFilterType
             // 
-            cmbInout2.Items.AddRange(new object[] { "支出", "収入" });
-            cmbInout2.Location = new Point(558, 41);
-            cmbInout2.Name = "cmbInout2";
-            cmbInout2.Size = new Size(92, 33);
-            cmbInout2.TabIndex = 0;
-            cmbInout2.SelectedIndexChanged += cmbInout2_SelectedIndexChanged;
+            cmbFilterType.Items.AddRange(new object[] { "支出", "収入" });
+            cmbFilterType.Location = new Point(558, 41);
+            cmbFilterType.Name = "cmbFilterType";
+            cmbFilterType.Size = new Size(92, 33);
+            cmbFilterType.TabIndex = 0;
+            cmbFilterType.SelectedIndexChanged += cmbInout2_SelectedIndexChanged;
             // 
             // btpAdd
             // 
@@ -215,7 +215,7 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(label9);
-            tabPage2.Controls.Add(cmbInout2);
+            tabPage2.Controls.Add(cmbFilterType);
             tabPage2.Controls.Add(btnDelete);
             tabPage2.Controls.Add(btnSearch);
             tabPage2.Controls.Add(label7);
@@ -345,8 +345,8 @@
             // 
             // chart2
             // 
-            chartArea3.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea1);
             chart2.Location = new Point(17, 124);
             chart2.Name = "chart2";
             chart2.Size = new Size(490, 232);
@@ -355,8 +355,8 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea4);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
             chart1.Location = new Point(513, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
@@ -472,7 +472,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
         private FileSystemWatcher fileSystemWatcher1;
         private ComboBox cmbInout;
-        private ComboBox cmbInout2;
+        private ComboBox cmbFilterType;
         private Label label8;
         private Label label9;
     }
