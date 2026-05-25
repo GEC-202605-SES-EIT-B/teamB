@@ -267,7 +267,7 @@
             // 
             dtpFrom.Location = new Point(20, 30);
             dtpFrom.Name = "dtpFrom";
-            dtpFrom.Size = new Size(193, 31);
+            dtpFrom.Size = new Size(191, 31);
             dtpFrom.TabIndex = 2;
             // 
             // dgvList
