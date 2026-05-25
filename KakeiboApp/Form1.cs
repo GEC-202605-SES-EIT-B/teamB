@@ -234,7 +234,7 @@ namespace KakeiboApp
 
             Series series = new Series();
 
-            series.ChartType = SeriesChartType.Pie;　
+            series.ChartType = SeriesChartType.Pie;
             series["PieStartAngle"] = "270";
 
             series.Points.AddXY("収入", summary.Income);
@@ -301,6 +301,11 @@ namespace KakeiboApp
             dgvList.DataSource = kakeiboList;
 
             MessageBox.Show("削除完了");
+        }
+
+        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
