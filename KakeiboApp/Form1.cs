@@ -104,9 +104,8 @@ namespace KakeiboApp
             var jsonString = JsonSerializer.Serialize(kakeiboList);
             File.WriteAllText(filePath, jsonString);
 
-
-
-
+            txtAmount.Text = "";
+            txtMemo.Text = "";
 
         }
 
