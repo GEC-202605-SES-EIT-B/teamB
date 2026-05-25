@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -54,12 +57,14 @@
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             btnDelete = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvList).BeginInit();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
             // dtpDate
@@ -262,6 +267,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(chart1);
             tabPage3.Controls.Add(button1);
             tabPage3.Controls.Add(lblIBalance);
             tabPage3.Controls.Add(lblExpense);
@@ -323,6 +329,16 @@
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            chart1.Location = new Point(463, 124);
+            chart1.Name = "chart1";
+            chart1.Size = new Size(267, 232);
+            chart1.TabIndex = 5;
+            chart1.Text = "chart1";
+            // 
             // btnDelete
             // 
             btnDelete.Location = new Point(638, 324);
@@ -350,6 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvList).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 
@@ -381,6 +398,7 @@
         private ComboBox cmbFilterCategory;
         private Label label6;
         private Button btnSearch;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private Button btnDelete;
     }
 }
