@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -75,14 +75,14 @@
             // 
             // txtMemo
             // 
-            txtMemo.Location = new Point(606, 237);
+            txtMemo.Location = new Point(600, 250);
             txtMemo.Name = "txtMemo";
             txtMemo.Size = new Size(150, 31);
             txtMemo.TabIndex = 1;
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(339, 237);
+            txtAmount.Location = new Point(312, 250);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(150, 31);
             txtAmount.TabIndex = 2;
@@ -91,9 +91,9 @@
             // 
             cmbCategory.FormattingEnabled = true;
             cmbCategory.Items.AddRange(new object[] { "生活費", "食費", "娯楽費", "給与", "その他" });
-            cmbCategory.Location = new Point(20, 237);
+            cmbCategory.Location = new Point(25, 250);
             cmbCategory.Name = "cmbCategory";
-            cmbCategory.Size = new Size(182, 33);
+            cmbCategory.Size = new Size(150, 33);
             cmbCategory.TabIndex = 3;
             cmbCategory.SelectedIndexChanged += cmbCategory_SelectedIndexChanged;
             // 
@@ -119,7 +119,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(397, 189);
+            label2.Location = new Point(354, 189);
             label2.Name = "label2";
             label2.Size = new Size(48, 25);
             label2.TabIndex = 6;
@@ -226,9 +226,9 @@
             // 
             cmbFilterCategory.FormattingEnabled = true;
             cmbFilterCategory.Items.AddRange(new object[] { "すべて", "生活費", "食費", "娯楽費", "給与", "その他" });
-            cmbFilterCategory.Location = new Point(449, 33);
+            cmbFilterCategory.Location = new Point(450, 30);
             cmbFilterCategory.Name = "cmbFilterCategory";
-            cmbFilterCategory.Size = new Size(126, 33);
+            cmbFilterCategory.Size = new Size(150, 33);
             cmbFilterCategory.TabIndex = 6;
             cmbFilterCategory.SelectedIndexChanged += cmbFilterCategory_SelectedIndexChanged;
             // 
@@ -253,14 +253,14 @@
             // 
             // dtpTo
             // 
-            dtpTo.Location = new Point(234, 31);
+            dtpTo.Location = new Point(230, 30);
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new Size(191, 31);
             dtpTo.TabIndex = 3;
             // 
             // dtpFrom
             // 
-            dtpFrom.Location = new Point(20, 31);
+            dtpFrom.Location = new Point(20, 30);
             dtpFrom.Name = "dtpFrom";
             dtpFrom.Size = new Size(193, 31);
             dtpFrom.TabIndex = 2;
@@ -292,8 +292,8 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
             chart1.Location = new Point(463, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
