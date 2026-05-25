@@ -24,23 +24,22 @@ namespace KakeiboApp
                 if (data.Date.Year == year &&
                     data.Date.Month == month)
                 {
-                    if (data.Price > 0)
+                    if (data.Inout == "収入")
                     {
                         Income += (int) data.Price;
                     }
-                    else
+                    else if (data.Inout == "支出")
                     {
-                        Expense += Math.Abs((int) data.Price);
-                    }
+                        Expense += (int) data.Price;
 
-                    // カテゴリ別集計
-                    if (!CategoryTotals.ContainsKey(data.Cate))
-                    {
-                        CategoryTotals[data.Cate] = 0;
-                    }
-                    CategoryTotals[data.Cate] += (int)Math.Abs(data.Price);
+                        // カテゴリ別集計
+                        if (!CategoryTotals.ContainsKey(data.Cate))
+                        {
+                            CategoryTotals[data.Cate] = 0;
+                        }
+                        CategoryTotals[data.Cate] += (int)Math.Abs(data.Price);
+                    } 
                 }
-                
             }  
         }  
         public int Balance
