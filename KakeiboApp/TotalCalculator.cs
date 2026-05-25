@@ -10,12 +10,15 @@ namespace KakeiboApp
     {
         public int Income { get; set; }
         public int Expense { get; set; }
+        public Dictionary<string, int> CategoryTotals = new Dictionary<string, int>();
 
         public void Calculate(List<Money> moneyList, int year,int month)
         { 
             Income = 0;
             Expense = 0;
-            
+
+            CategoryTotals.Clear();
+
             foreach (var data in moneyList)
             {
                 if (data.Date.Year == year &&
@@ -29,6 +32,13 @@ namespace KakeiboApp
                     {
                         Expense += Math.Abs((int) data.Price);
                     }
+
+                    // カテゴリ別集計
+                    if (!CategoryTotals.ContainsKey(data.Cate))
+                    {
+                        CategoryTotals[data.Cate] = 0;
+                    }
+                    CategoryTotals[data.Cate] += (int)Math.Abs(data.Price);
                 }
                 
             }  
