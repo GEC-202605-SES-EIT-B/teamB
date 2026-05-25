@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -291,8 +291,8 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
             chart1.Location = new Point(463, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
@@ -301,7 +301,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(633, 45);
+            button1.Location = new Point(548, 55);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 4;
