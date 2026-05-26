@@ -6,6 +6,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using System.Data;
 using System.Configuration;
 using System.Windows.Forms.Design;
+using Microsoft.VisualBasic;
 
 namespace KakeiboApp
 {
@@ -15,6 +16,8 @@ namespace KakeiboApp
         private Money editingItem = null;
 
         string filePath = "money.json";
+        private string goalFilePath = "goal.json";
+
         public Form1()
         {
             InitializeComponent();
@@ -44,6 +47,12 @@ namespace KakeiboApp
             public Decimal Price { get; set; }
             public string Memo { get; set; }
 
+        }
+        public class GoalData
+        {
+            public int Year { get; set; }
+            public int Month { get; set; }
+            public decimal GoalAmount { get; set; }
         }
 
         private void btpAdd_Click(object sender, EventArgs e)
@@ -157,7 +166,7 @@ namespace KakeiboApp
                 return;
             }
 
-                MessageBox.Show("検索完了");
+            MessageBox.Show("検索完了");
 
             //Jsonファイル読み込み
             try
@@ -196,8 +205,8 @@ namespace KakeiboApp
 
             dgvList.DataSource = null;
             dgvList.DataSource = data.ToList();
-           
-        } 
+
+        }
         // 月次サマリー　集計ボタン
         private void button1_Click(object sender, EventArgs e)
         {
@@ -302,6 +311,35 @@ namespace KakeiboApp
         private void Form1_Load(object sender, EventArgs e)
         {
             btnUpdate.Enabled = false; //　画面起動時に更新ボタンは操作不可
+
+            lblMontlyGoal.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月の支出目標";
+
+
+            if (File.Exists(goalFilePath)) // 目標設定があるか
+            {
+                string json =　File.ReadAllText(goalFilePath);
+
+                GoalData goal =　JsonSerializer.Deserialize<GoalData>(json);
+
+                if (goal != null)
+                {
+                    txtGoal.Text =　goal.GoalAmount.ToString();　//　目標金額表示
+
+                    decimal currentExpense = kakeiboList
+                        .Where(x =>
+                            x.Date.Year == DateTime.Now.Year &&
+                            x.Date.Month == DateTime.Now.Month &&
+                            x.Inout == "支出")
+                        .Sum(x => x.Price);
+
+                    // 残り金額
+                    decimal remain =　goal.GoalAmount - currentExpense;
+
+                    lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
+
+                    lblRemain.Text = "残り予算：" + remain.ToString("#,##0") + "円";
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -495,7 +533,7 @@ namespace KakeiboApp
 
 
 
-     
+
 
         private void csvButton_Click(object sender, EventArgs e)//CSV出力
         {
@@ -575,27 +613,59 @@ namespace KakeiboApp
             msg = $"CSVファイルを出力しました。\n{FILE_PATH}";
             MessageBox.Show(msg, "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-            private string quoteCommaCheck(string sCell)
+        private string quoteCommaCheck(string sCell)
+        {
+
+            const string QUOTE = @"""";//"
+            const string COMMA = @",";//,
+
+            string[] a = { QUOTE, COMMA };
+
+            if (sCell.Contains(",") || sCell.Contains("\""))
             {
-
-                const string QUOTE = @"""";//"
-                const string COMMA = @",";//,
-
-                string[]a = { QUOTE, COMMA };
-
-                if (sCell.Contains(",") || sCell.Contains("\""))
-                {
-                    sCell = sCell.Replace("\"", "\"\"");//ダブルクォーテーションをエスケープ
-                    sCell = $"\"{sCell}\"";//文字列全体をダブルクォーテーションで囲む
-                }
-                return sCell;
+                sCell = sCell.Replace("\"", "\"\"");//ダブルクォーテーションをエスケープ
+                sCell = $"\"{sCell}\"";//文字列全体をダブルクォーテーションで囲む
             }
-
-
-
+            return sCell;
         }
 
-        
-        
+        // 目標タブ　設定ボタン
+        private void btnTargetSet_Click(object sender, EventArgs e)
+        {
+            // 入力金額のチェック
+            if (!decimal.TryParse(txtGoal.Text, out decimal monthlyGoal))
+            {
+                MessageBox.Show("金額を入力してください");
+                return;
+            }
+
+            //　今月の支出合計
+            decimal currentExpense = kakeiboList
+                .Where(x =>
+                    x.Date.Year == DateTime.Now.Year &&
+                    x.Date.Month == DateTime.Now.Month &&
+                    x.Inout == "支出")
+                .Sum(x => x.Price);
+
+            // 目標-支出合計
+            decimal remain = monthlyGoal - currentExpense;
+
+            lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
+            lblRemain.Text = "残り予算：" + remain.ToString("#,##0") + "円";
+
+            //　保存用データ
+            GoalData goal = new GoalData()
+            {
+                Year = DateTime.Now.Year,
+                Month = DateTime.Now.Month,
+                GoalAmount = monthlyGoal
+            };
+            // json変換
+            string json = JsonSerializer.Serialize(goal);
+            File.WriteAllText(goalFilePath, json);
+            MessageBox.Show("目標を設定しました");
+
+        }
     }
+}
 

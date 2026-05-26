@@ -68,6 +68,12 @@
             lblExpense = new Label();
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
+            tabPage4 = new TabPage();
+            lblRemain = new Label();
+            lblCurrentExpense = new Label();
+            btnTargetSet = new Button();
+            txtGoal = new TextBox();
+            lblMontlyGoal = new Label();
             fileSystemWatcher1 = new FileSystemWatcher();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -76,6 +82,7 @@
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chart2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
+            tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
@@ -180,6 +187,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -468,6 +476,65 @@
             dtpMonth.TabIndex = 0;
             dtpMonth.ValueChanged += dtpMonth_ValueChanged;
             // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(lblRemain);
+            tabPage4.Controls.Add(lblCurrentExpense);
+            tabPage4.Controls.Add(btnTargetSet);
+            tabPage4.Controls.Add(txtGoal);
+            tabPage4.Controls.Add(lblMontlyGoal);
+            tabPage4.Location = new Point(4, 34);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(780, 378);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "目標";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // lblRemain
+            // 
+            lblRemain.AutoSize = true;
+            lblRemain.Location = new Point(41, 111);
+            lblRemain.Name = "lblRemain";
+            lblRemain.Size = new Size(60, 25);
+            lblRemain.TabIndex = 4;
+            lblRemain.Text = "残り：";
+            // 
+            // lblCurrentExpense
+            // 
+            lblCurrentExpense.AutoSize = true;
+            lblCurrentExpense.Location = new Point(41, 70);
+            lblCurrentExpense.Name = "lblCurrentExpense";
+            lblCurrentExpense.Size = new Size(117, 25);
+            lblCurrentExpense.TabIndex = 3;
+            lblCurrentExpense.Text = "現在の支出：";
+            // 
+            // btnTargetSet
+            // 
+            btnTargetSet.Location = new Point(516, 31);
+            btnTargetSet.Name = "btnTargetSet";
+            btnTargetSet.Size = new Size(112, 34);
+            btnTargetSet.TabIndex = 2;
+            btnTargetSet.Text = "設定";
+            btnTargetSet.UseVisualStyleBackColor = true;
+            btnTargetSet.Click += btnTargetSet_Click;
+            // 
+            // txtGoal
+            // 
+            txtGoal.Location = new Point(237, 31);
+            txtGoal.Name = "txtGoal";
+            txtGoal.Size = new Size(238, 31);
+            txtGoal.TabIndex = 1;
+            // 
+            // lblMontlyGoal
+            // 
+            lblMontlyGoal.AutoSize = true;
+            lblMontlyGoal.Location = new Point(41, 31);
+            lblMontlyGoal.Name = "lblMontlyGoal";
+            lblMontlyGoal.Size = new Size(174, 25);
+            lblMontlyGoal.TabIndex = 0;
+            lblMontlyGoal.Text = "1ヵ月の支出目標金額";
+            // 
             // fileSystemWatcher1
             // 
             fileSystemWatcher1.EnableRaisingEvents = true;
@@ -492,6 +559,8 @@
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)chart2).EndInit();
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
         }
@@ -537,5 +606,11 @@
         private Button btnUpdate;
         private Button btnEdit;
         private Button csvButton;
+        private TabPage tabPage4;
+        private Button btnTargetSet;
+        private TextBox txtGoal;
+        private Label lblMontlyGoal;
+        private Label lblCurrentExpense;
+        private Label lblRemain;
     }
 }
