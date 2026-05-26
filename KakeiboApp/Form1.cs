@@ -391,24 +391,6 @@ namespace KakeiboApp
             }
 
             txtNewCategory.Text = "";
-
-            if (editingItem == null)
-            {
-                MessageBox.Show("取得失敗");
-                return;
-            }
-
-            // 選択した行の情報を入力欄へ表示
-            dtpDate.Value = editingItem.Date;
-            cmbCategory.Text = editingItem.Cate;
-            cmbInout.Text = editingItem.Inout;
-            txtAmount.Text = editingItem.Price.ToString();
-            txtMemo.Text = editingItem.Memo;
-
-            btpAdd.Enabled = false; //　登録不可
-            btnUpdate.Enabled = true; // 更新可
-
-            tabControl1.SelectedIndex = 0; // 入力画面へ遷移
         }
 
         // 入力画面　更新ボタン
