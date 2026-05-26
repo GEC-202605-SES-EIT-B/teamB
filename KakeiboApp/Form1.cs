@@ -48,7 +48,7 @@ namespace KakeiboApp
 
             // 入力チェック
             if (string.IsNullOrWhiteSpace(txtAmount.Text) ||
-                string.IsNullOrWhiteSpace(cmbCategory.Text)||
+                string.IsNullOrWhiteSpace(cmbCategory.Text) ||
                 string.IsNullOrWhiteSpace(cmbInout.Text))
             {
                 MessageBox.Show("無効です");
@@ -128,7 +128,7 @@ namespace KakeiboApp
         {
 
 
-            
+
             var from = dtpFrom.Value.Date;
             var to = dtpTo.Value.Date;
 
@@ -368,50 +368,30 @@ namespace KakeiboApp
         {
 
         }
-        // 入力画面　更新ボタン
-        private void btnUpdate_Click(object sender, EventArgs e)
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            btnUpdate.Enabled = false;
 
-            if (editingItem ==null)
+            string newCategory = txtNewCategory.Text.Trim();
+
+            if (string.IsNullOrEmpty(newCategory))
             {
-                MessageBox.Show("編集データなし");
-                return;
-            }
-            // 編集した情報をeditingItemへ保存
-            editingItem.Date = dtpDate.Value;
-            editingItem.Cate = cmbCategory.Text;
-            editingItem.Inout = cmbInout.Text;
-            editingItem.Price = decimal.Parse(txtAmount.Text);
-            editingItem.Memo = txtMemo.Text;
-
-            // 更新済みkakeiboListをjson保存
-            var json = JsonSerializer.Serialize(kakeiboList);
-            File.WriteAllText(filePath, json);
-
-            // 一覧を再表示
-            dgvList.DataSource = null;
-            dgvList.DataSource = kakeiboList;
-
-            // 編集モード終了
-            editingItem = null;　
-
-            btpAdd.Enabled = true; // 登録可
-            btnUpdate.Enabled = false;// 更新不可
-
-            MessageBox.Show("更新完了");
-            tabControl1.SelectedIndex = 1; // 一覧画面へ遷移
-        }
-        // 一覧画面　編集ボタン
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (dgvList.CurrentRow == null)
-            {
-                MessageBox.Show("行を選択してください");
+                MessageBox.Show("カテゴリを入力してください");
                 return;
             }
 
-            editingItem = dgvList.CurrentRow.DataBoundItem as Money;
+            // 重複チェック
+            if (!cmbCategory.Items.Contains(newCategory))
+            {
+                cmbCategory.Items.Add(newCategory);
+                MessageBox.Show("追加完了！");
+            }
+            else
+            {
+                MessageBox.Show("そのカテゴリは既にあります");
+            }
+
+            txtNewCategory.Text = "";
 
             if (editingItem == null)
             {
