@@ -4,6 +4,8 @@ using System.Text.Json;
 using System.Drawing.Text;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Data;
+using System.Configuration;
+using System.Windows.Forms.Design;
 
 namespace KakeiboApp
 {
@@ -369,109 +371,56 @@ namespace KakeiboApp
 
         }
 
-        /*
-      
-            DataTable dt = createData();
-
-            dgvList.RowTemplate.Height = 30;
-
-            dgvList.RowTemplate.DefaultCellStyle.Padding = new Padding(5);
-
-            dgvList.DataSource = dt;
-
-            dgvList.Columns["Date"].HeaderText = "日付";
-            dgvList.Columns["Cate"].HeaderText = "カテゴリ";
-            dgvList.Columns["Inout"].HeaderText = "収入/支出";
-            dgvList.Columns["Price"].HeaderText = "金額";
-            dgvList.Columns["Memo"].HeaderText = "メモ";
-
-            dgvList.EnableHeadersVisualStyles = false;//Visualスタイルを使用しない
-
-            dgvList.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;//列ヘッダーの背景色
-            dgvList.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightSalmon;//列ヘッダーの文字色
-
-            dgvList.RowHeadersVisible = false;//行ヘッダーを非表示
-            dgvList.ColumnHeadersVisible = true;//列ヘッダーを表示
-
-            dgvList.ColumnHeadersHeightSizeMode =
-                DataGridViewColumnHeadersHeightSizeMode.DisableResizing;//列ヘッダーの高さを固定
-
-            dgvList.RowHeadersWidthSizeMode =
-                DataGridViewRowHeadersWidthSizeMode.DisableResizing;//行ヘッダーの幅を固定
-
-            dgvList.ColumnHeadersHeight = 30;//列ヘッダーの高さを30に設定
-
-            dgvList.Columns["Date"].HeaderCell.Style.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//列ヘッダーの文字(Data)を中央揃え
-
-            dgvList.Columns["Cate"].HeaderCell.Style.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//列ヘッダーの文字(Cate)を中央揃え
-
-            dgvList.Columns["Inout"].HeaderCell.Style.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//列ヘッダーの文字(Inout)を中央揃え
-
-            dgvList.Columns["Price"].HeaderCell.Style.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//列ヘッダーの文字(Price)を中央揃え
-
-            dgvList.Columns["Memo"].HeaderCell.Style.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//列ヘッダーの文字(Memo)を中央揃え
-
-            dgvList.AllowUserToAddRows = false;//ユーザーによる行の追加を禁止
-            dgvList.AllowUserToDeleteRows = false;//ユーザーによる行の削除を禁止
-            dgvList.MultiSelect = false;//複数行の選択を禁止
-            dgvList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;//行全体を選択するモードに設定
-            dgvList.AllowUserToResizeColumns = true;//ユーザーによる列のサイズ変更を許可
-            dgvList.AllowUserToResizeRows = false;//ユーザーによる行のサイズ変更を禁止
-            dgvList.ReadOnly = true;//ユーザーによるセルの編集を禁止
-
-            dgvList.Columns["Date"].DefaultCellStyle.Alignment =
-                DataGridViewContentAlignment.MiddleLeft;//Date列のセルの文字を左揃え
-
-            dgvList.Columns["Cate"].DefaultCellStyle.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//Cate列のセルの文字を中央揃え
-
-            dgvList.Columns["Inout"].DefaultCellStyle.Alignment =
-                DataGridViewContentAlignment.MiddleCenter;//Inout列のセルの文字を中央揃え
-
-            dgvList.Columns["Price"].DefaultCellStyle.Alignment =
-                DataGridViewContentAlignment.MiddleRight;//Price列のセルの文字を右揃え
-
-            dgvList.Columns["Memo"].DefaultCellStyle.Alignment =
-                DataGridViewContentAlignment.MiddleLeft;//Memo列のセルの文字を左揃え
-
-            dgvList.Columns["Date"].Width = 100;//Date列の幅を100に設定
-            dgvList.Columns["Cate"].Width = 100;//Cate列の幅を100に設定
-            dgvList.Columns["Inout"].Width = 100;//Inout列の幅を100に設定
-            dgvList.Columns["Price"].Width = 100;//Price列の幅を100に設定
-            dgvList.Columns["Memo"].Width = 200;//Memo列の幅を200に設定
-
-            dgvList.ClearSelection();//選択状態を解除
-
-        
-              */
 
 
-
-        private DataTable createData()
-        {
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Date", typeof(DateTime));
-            dt.Columns.Add("Cate", typeof(string));
-            dt.Columns.Add("Inout", typeof(string));
-            dt.Columns.Add("Price", typeof(decimal));
-            dt.Columns.Add("Memo", typeof(string));
-
-            foreach (var item in kakeiboList)
-            {
-                dt.Rows.Add(item.Date, item.Cate, item.Inout, item.Price, item.Memo);
-            }
-            return dt;
-
-        }
+     
 
         private void csvButton_Click(object sender, EventArgs e)//CSV出力
         {
+
+            SaveCsvFile();
+        }
+
+
+
+
+        private void SaveCsvFile()
+        {
+            /*
+            if (dgvList.RowCount <= 0)
+            {
+                return;
+            }
+
+            var csvList = dgvList.DataSource as List<Money>;
+            if(csvList == null)
+            {
+                MessageBox.Show("データ取得エラー");
+                return;
+            }
+
+            using (SaveFileDialog dialog = new SaveFileDialog())
+            {
+                dialog.Filter = "CSVファイル (*.csv)|*.csv";
+                dialog.Title = "CSVファイルを保存";
+                dialog.FileName = "kakeibo.csv";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = dialog.FileName;
+
+                    using (StreamWriter writer = new StreamWriter(filePath, false, System.Text.Encoding.Default))
+                    {
+                        writer.WriteLine(csvList);
+
+                        MessageBox.Show($"CSVファイルを出力しました。\n{filePath}", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+            }
+            */
+
+
             const string FILE_PATH = "@kakeibo.csv";
 
             string msg = "";
@@ -494,9 +443,9 @@ namespace KakeiboApp
             {
                 string s = "";
 
-                for (int iCol = 0; iCol < dgvList.ColumnCount; iCol++)
+                for (int iCol = 0; iCol < dgvList.Columns.Count; iCol++)//行のループ
                 {
-                    string sCell = dgvList.Columns[iCol].HeaderCell.Value.ToString();
+                    String sCell = dgvList.Columns[iCol].HeaderCell.Value.ToString();
 
                     if (iCol > 0)
                     {
@@ -504,22 +453,24 @@ namespace KakeiboApp
                     }
 
                     s += quoteCommaCheck(sCell);
-
-                    sw.WriteLine(s);
                 }
 
-                int maxRowCount = dgvList.RowCount;
+                sw.WriteLine(s);
+
+
+                int maxRowsCount = dgvList.Rows.Count;
                 if (dgvList.AllowUserToAddRows)
                 {
-                    maxRowCount -= 1;//追加行が含まれているため、行数を1減らす
+                    maxRowsCount = maxRowsCount - 1;//追加行が含まれているため、行数を1減らす
                 }
 
-                for (int iRow = 0; iRow < maxRowCount; iRow++)
+                for (int iRow = 0; iRow < maxRowsCount; iRow++)//行のループ
                 {
                     s = "";
-                    for (int iCol = 0; iCol < dgvList.Columns.Count; iCol++)
+
+                    for (int iCol = 0; iCol < dgvList.Columns.Count; iCol++)//列のループ
                     {
-                        string sCell = dgvList[iCol, iRow].Value?.ToString() ?? "";
+                        string sCell = dgvList[iCol, iRow].Value.ToString();
 
                         if (iCol > 0)
                         {
@@ -533,19 +484,30 @@ namespace KakeiboApp
             }
             msg = $"CSVファイルを出力しました。\n{FILE_PATH}";
             MessageBox.Show(msg, "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
         }
 
-        private string quoteCommaCheck(string sCell)
-        {
-            if (sCell.Contains(",") || sCell.Contains("\"") || sCell.Contains("\n"))
+
+            private string quoteCommaCheck(string sCell)
             {
-                sCell = sCell.Replace("\"", "\"\"");//ダブルクォーテーションをエスケープ
-                sCell = $"\"{sCell}\"";//文字列全体をダブルクォーテーションで囲む
+
+                const string QUOTE = @"""";//"
+                const string COMMA = @",";//,
+
+                string[]a = { QUOTE, COMMA };
+
+                if (sCell.Contains(",") || sCell.Contains("\""))
+                {
+                    sCell = sCell.Replace("\"", "\"\"");//ダブルクォーテーションをエスケープ
+                    sCell = $"\"{sCell}\"";//文字列全体をダブルクォーテーションで囲む
+                }
+                return sCell;
             }
-            return sCell;
+
+
 
         }
+
+        
+        
     }
-}
+
