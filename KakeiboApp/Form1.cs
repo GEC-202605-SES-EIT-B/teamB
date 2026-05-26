@@ -479,41 +479,6 @@ namespace KakeiboApp
 
         private void SaveCsvFile()
         {
-            /*
-            if (dgvList.RowCount <= 0)
-            {
-                return;
-            }
-
-            var csvList = dgvList.DataSource as List<Money>;
-            if(csvList == null)
-            {
-                MessageBox.Show("データ取得エラー");
-                return;
-            }
-
-            using (SaveFileDialog dialog = new SaveFileDialog())
-            {
-                dialog.Filter = "CSVファイル (*.csv)|*.csv";
-                dialog.Title = "CSVファイルを保存";
-                dialog.FileName = "kakeibo.csv";
-
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    string filePath = dialog.FileName;
-
-                    using (StreamWriter writer = new StreamWriter(filePath, false, System.Text.Encoding.Default))
-                    {
-                        writer.WriteLine(csvList);
-
-                        MessageBox.Show($"CSVファイルを出力しました。\n{filePath}", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-
-            }
-            */
-
-
             const string FILE_PATH = "@kakeibo.csv";
 
             string msg = "";
@@ -581,8 +546,6 @@ namespace KakeiboApp
             msg = $"CSVファイルを出力しました。\n{FILE_PATH}";
             MessageBox.Show(msg, "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
             private string quoteCommaCheck(string sCell)
             {
 
