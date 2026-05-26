@@ -439,7 +439,7 @@ namespace KakeiboApp
                 return;
             }
 
-            using (StreamWriter sw = new StreamWriter(FILE_PATH, false, System.Text.Encoding.Default))
+            using (StreamWriter sw = new StreamWriter(FILE_PATH, false, System.Text.Encoding.UTF8))
             {
                 string s = "";
 
