@@ -404,8 +404,30 @@ namespace KakeiboApp
         // 入力画面　更新ボタン
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            btnUpdate.Enabled = false;
+            // 入力チェック
+            if (string.IsNullOrWhiteSpace(txtAmount.Text))
+            {
+                MessageBox.Show("金額を入力してください");
+                return;
+            }
 
+            if (string.IsNullOrWhiteSpace(cmbCategory.Text))
+            {
+                MessageBox.Show("カテゴリを選択してください");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbInout.Text))
+            {
+                MessageBox.Show("収入/支出を選択してください");
+                return;
+            }
+
+            if (!decimal.TryParse(txtAmount.Text, out decimal amount))
+            {
+                MessageBox.Show("金額は半角数字で入力してください");
+                return;
+            }
             if (editingItem == null)
             {
                 MessageBox.Show("編集データなし");
@@ -444,7 +466,14 @@ namespace KakeiboApp
                 return;
             }
 
-            editingItem = dgvList.CurrentRow.DataBoundItem as Money;
+            var selectedItem = dgvList.CurrentRow.DataBoundItem as Money;
+
+            editingItem = kakeiboList.FirstOrDefault(x =>
+                x.Date == selectedItem.Date &&
+                x.Cate == selectedItem.Cate &&
+                x.Price == selectedItem.Price &&
+                x.Memo == selectedItem.Memo
+            );
 
             if (editingItem == null)
             {
