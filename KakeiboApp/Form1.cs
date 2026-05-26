@@ -461,7 +461,7 @@ namespace KakeiboApp
 
             btpAdd.Enabled = false; //　登録不可
             btnUpdate.Enabled = true; // 更新可
-
+            tabControl1.SelectedIndex = 0; // 入力画面へ遷移
         }
 
 
@@ -565,10 +565,9 @@ namespace KakeiboApp
                     {
                         string sCell = dgvList[iCol, iRow].Value.ToString();
 
-            tabControl1.SelectedIndex = 0; // 入力画面へ遷移
-        }
-    }
-}
+
+
+
                         if (iCol > 0)
                         {
                             s += ",";
