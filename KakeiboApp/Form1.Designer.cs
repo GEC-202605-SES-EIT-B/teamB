@@ -282,7 +282,7 @@
             // 
             // csvButton
             // 
-            csvButton.Location = new Point(491, 324);
+            csvButton.Location = new Point(367, 324);
             csvButton.Name = "csvButton";
             csvButton.Size = new Size(112, 34);
             csvButton.TabIndex = 20;
