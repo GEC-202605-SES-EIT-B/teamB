@@ -47,7 +47,7 @@ namespace KakeiboApp
 
             // 入力チェック
             if (string.IsNullOrWhiteSpace(txtAmount.Text) ||
-                string.IsNullOrWhiteSpace(cmbCategory.Text)||
+                string.IsNullOrWhiteSpace(cmbCategory.Text) ||
                 string.IsNullOrWhiteSpace(cmbInout.Text))
             {
                 MessageBox.Show("無効です");
@@ -127,7 +127,7 @@ namespace KakeiboApp
         {
 
 
-            
+
             var from = dtpFrom.Value.Date;
             var to = dtpTo.Value.Date;
 
@@ -365,6 +365,32 @@ namespace KakeiboApp
 
         private void label9_Click(object sender, EventArgs e)//関係ない
         {
+
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+
+            string newCategory = txtNewCategory.Text.Trim();
+
+            if (string.IsNullOrEmpty(newCategory))
+            {
+                MessageBox.Show("カテゴリを入力してください");
+                return;
+            }
+
+            // 重複チェック
+            if (!cmbCategory.Items.Contains(newCategory))
+            {
+                cmbCategory.Items.Add(newCategory);
+                MessageBox.Show("追加完了！");
+            }
+            else
+            {
+                MessageBox.Show("そのカテゴリは既にあります");
+            }
+
+            txtNewCategory.Text = "";
 
         }
     }

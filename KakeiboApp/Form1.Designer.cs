@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -64,6 +64,8 @@
             lblIncome = new Label();
             dtpMonth = new DateTimePicker();
             fileSystemWatcher1 = new FileSystemWatcher();
+            txtNewCategory = new TextBox();
+            btnAddCategory = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -183,6 +185,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(btnAddCategory);
+            tabPage1.Controls.Add(txtNewCategory);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(dtpDate);
             tabPage1.Controls.Add(btpAdd);
@@ -345,8 +349,8 @@
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea3);
             chart2.Location = new Point(17, 124);
             chart2.Name = "chart2";
             chart2.Size = new Size(490, 232);
@@ -355,8 +359,8 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea4);
             chart1.Location = new Point(513, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
@@ -415,6 +419,23 @@
             // 
             fileSystemWatcher1.EnableRaisingEvents = true;
             fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // txtNewCategory
+            // 
+            txtNewCategory.Location = new Point(25, 315);
+            txtNewCategory.Name = "txtNewCategory";
+            txtNewCategory.Size = new Size(150, 31);
+            txtNewCategory.TabIndex = 12;
+            // 
+            // btnAddCategory
+            // 
+            btnAddCategory.Location = new Point(191, 315);
+            btnAddCategory.Name = "btnAddCategory";
+            btnAddCategory.Size = new Size(112, 34);
+            btnAddCategory.TabIndex = 13;
+            btnAddCategory.Text = "カテゴリ追加";
+            btnAddCategory.UseVisualStyleBackColor = true;
+            btnAddCategory.Click += btnAddCategory_Click;
             // 
             // Form1
             // 
@@ -475,5 +496,7 @@
         private ComboBox cmbFilterType;
         private Label label8;
         private Label label9;
+        private Button btnAddCategory;
+        private TextBox txtNewCategory;
     }
 }
