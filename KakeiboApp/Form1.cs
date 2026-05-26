@@ -152,7 +152,6 @@ namespace KakeiboApp
             MessageBox.Show("検索完了");
 
             //Jsonファイル読み込み
-           
             try
             {
                 if (!File.Exists(filePath))
@@ -189,8 +188,8 @@ namespace KakeiboApp
 
             dgvList.DataSource = null;
             dgvList.DataSource = data.ToList();
-
-        }
+           
+        } 
         // 月次サマリー　集計ボタン
         private void button1_Click(object sender, EventArgs e)
         {
@@ -400,7 +399,71 @@ namespace KakeiboApp
             }
 
             // 選択した行の情報を入力欄へ表示
-            dtpDate.Value = editingItem.Date; 
+            dtpDate.Value = editingItem.Date;
+            cmbCategory.Text = editingItem.Cate;
+            cmbInout.Text = editingItem.Inout;
+            txtAmount.Text = editingItem.Price.ToString();
+            txtMemo.Text = editingItem.Memo;
+
+            btpAdd.Enabled = false; //　登録不可
+            btnUpdate.Enabled = true; // 更新可
+
+            tabControl1.SelectedIndex = 0; // 入力画面へ遷移
+        }
+
+        // 入力画面　更新ボタン
+        private void btnUpdate_Click_1(object sender, EventArgs e)
+        {
+            btnUpdate.Enabled = false;
+
+            if (editingItem == null)
+            {
+                MessageBox.Show("編集データなし");
+                return;
+            }
+            // 編集した情報をeditingItemへ保存
+            editingItem.Date = dtpDate.Value;
+            editingItem.Cate = cmbCategory.Text;
+            editingItem.Inout = cmbInout.Text;
+            editingItem.Price = decimal.Parse(txtAmount.Text);
+            editingItem.Memo = txtMemo.Text;
+
+            // 更新済みkakeiboListをjson保存
+            var json = JsonSerializer.Serialize(kakeiboList);
+            File.WriteAllText(filePath, json);
+
+            // 一覧を再表示
+            dgvList.DataSource = null;
+            dgvList.DataSource = kakeiboList;
+
+            // 編集モード終了
+            editingItem = null;
+
+            btpAdd.Enabled = true; // 登録可
+            btnUpdate.Enabled = false;// 更新不可
+
+            MessageBox.Show("更新完了");
+            tabControl1.SelectedIndex = 1; // 一覧画面へ遷移
+        }
+        // 一覧画面　編集ボタン
+        private void btnEdit_Click_1(object sender, EventArgs e)
+        {
+            if (dgvList.CurrentRow == null)
+            {
+                MessageBox.Show("行を選択してください");
+                return;
+            }
+
+            editingItem = dgvList.CurrentRow.DataBoundItem as Money;
+
+            if (editingItem == null)
+            {
+                MessageBox.Show("取得失敗");
+                return;
+            }
+
+            // 選択した行の情報を入力欄へ表示
+            dtpDate.Value = editingItem.Date;
             cmbCategory.Text = editingItem.Cate;
             cmbInout.Text = editingItem.Inout;
             txtAmount.Text = editingItem.Price.ToString();
