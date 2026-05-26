@@ -148,8 +148,13 @@ namespace KakeiboApp
             {
                 data = data.Where(x => x.Inout == type);
             }
+            if (string.IsNullOrWhiteSpace(cmbFilterCategory.Text))
+            {
+                MessageBox.Show("カテゴリを選択してください");
+                return;
+            }
 
-            MessageBox.Show("検索完了");
+                MessageBox.Show("検索完了");
 
             //Jsonファイル読み込み
             try
