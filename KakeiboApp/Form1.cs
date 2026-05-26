@@ -3,9 +3,12 @@ using System.IO;
 using System.Text.Json;
 using System.Drawing.Text;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Data;
+using System.Configuration;
+using System.Windows.Forms.Design;
 
 namespace KakeiboApp
-   {
+{
     public partial class Form1 : Form
     {
         private List<Money> kakeiboList = new List<Money>();
@@ -459,11 +462,149 @@ namespace KakeiboApp
             btpAdd.Enabled = false; //　登録不可
             btnUpdate.Enabled = true; // 更新可
 
+        }
+
+
+
+     
+
+        private void csvButton_Click(object sender, EventArgs e)//CSV出力
+        {
+
+            SaveCsvFile();
+        }
+
+
+
+
+        private void SaveCsvFile()
+        {
+            /*
+            if (dgvList.RowCount <= 0)
+            {
+                return;
+            }
+
+            var csvList = dgvList.DataSource as List<Money>;
+            if(csvList == null)
+            {
+                MessageBox.Show("データ取得エラー");
+                return;
+            }
+
+            using (SaveFileDialog dialog = new SaveFileDialog())
+            {
+                dialog.Filter = "CSVファイル (*.csv)|*.csv";
+                dialog.Title = "CSVファイルを保存";
+                dialog.FileName = "kakeibo.csv";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = dialog.FileName;
+
+                    using (StreamWriter writer = new StreamWriter(filePath, false, System.Text.Encoding.Default))
+                    {
+                        writer.WriteLine(csvList);
+
+                        MessageBox.Show($"CSVファイルを出力しました。\n{filePath}", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+            }
+            */
+
+
+            const string FILE_PATH = "@kakeibo.csv";
+
+            string msg = "";
+
+            if (dgvList.RowCount <= 0)
+            {
+                msg = "出力するデータがありません。";
+                MessageBox.Show(msg, "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            msg = "CSVファイルを出力しますか？";
+            DialogResult result = MessageBox.Show(msg, "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            using (StreamWriter sw = new StreamWriter(FILE_PATH, false, System.Text.Encoding.UTF8))
+            {
+                string s = "";
+
+                for (int iCol = 0; iCol < dgvList.Columns.Count; iCol++)//行のループ
+                {
+                    String sCell = dgvList.Columns[iCol].HeaderCell.Value.ToString();
+
+                    if (iCol > 0)
+                    {
+                        s += ",";
+                    }
+
+                    s += quoteCommaCheck(sCell);
+                }
+
+                sw.WriteLine(s);
+
+
+                int maxRowsCount = dgvList.Rows.Count;
+                if (dgvList.AllowUserToAddRows)
+                {
+                    maxRowsCount = maxRowsCount - 1;//追加行が含まれているため、行数を1減らす
+                }
+
+                for (int iRow = 0; iRow < maxRowsCount; iRow++)//行のループ
+                {
+                    s = "";
+
+                    for (int iCol = 0; iCol < dgvList.Columns.Count; iCol++)//列のループ
+                    {
+                        string sCell = dgvList[iCol, iRow].Value.ToString();
+
             tabControl1.SelectedIndex = 0; // 入力画面へ遷移
         }
     }
 }
+                        if (iCol > 0)
+                        {
+                            s += ",";
+                        }
+
+                        s += quoteCommaCheck(sCell);
+                    }
+                    sw.WriteLine(s);
+                }
+            }
+            msg = $"CSVファイルを出力しました。\n{FILE_PATH}";
+            MessageBox.Show(msg, "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+            private string quoteCommaCheck(string sCell)
+            {
+
+                const string QUOTE = @"""";//"
+                const string COMMA = @",";//,
+
+                string[]a = { QUOTE, COMMA };
+
+                if (sCell.Contains(",") || sCell.Contains("\""))
+                {
+                    sCell = sCell.Replace("\"", "\"\"");//ダブルクォーテーションをエスケープ
+                    sCell = $"\"{sCell}\"";//文字列全体をダブルクォーテーションで囲む
+                }
+                return sCell;
+            }
 
 
 
+        }
+
+        
+        
+    }
 

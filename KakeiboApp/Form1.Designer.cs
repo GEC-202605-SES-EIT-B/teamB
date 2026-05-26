@@ -49,6 +49,7 @@
             btnUpdate = new Button();
             tabPage2 = new TabPage();
             btnEdit = new Button();
+            csvButton = new Button();
             label9 = new Label();
             btnDelete = new Button();
             btnSearch = new Button();
@@ -249,6 +250,7 @@
             // tabPage2
             // 
             tabPage2.Controls.Add(btnEdit);
+            tabPage2.Controls.Add(csvButton);
             tabPage2.Controls.Add(label9);
             tabPage2.Controls.Add(cmbFilterType);
             tabPage2.Controls.Add(btnDelete);
@@ -277,6 +279,16 @@
             btnEdit.Text = "編集";
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click_1;
+            // 
+            // csvButton
+            // 
+            csvButton.Location = new Point(491, 324);
+            csvButton.Name = "csvButton";
+            csvButton.Size = new Size(112, 34);
+            csvButton.TabIndex = 20;
+            csvButton.Text = "CSV出力";
+            csvButton.UseVisualStyleBackColor = true;
+            csvButton.Click += csvButton_Click;
             // 
             // label9
             // 
@@ -524,5 +536,6 @@
         private TextBox txtNewCategory;
         private Button btnUpdate;
         private Button btnEdit;
+        private Button csvButton;
     }
 }
