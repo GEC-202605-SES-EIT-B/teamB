@@ -43,8 +43,10 @@
             label4 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            btnUpdate = new Button();
             label8 = new Label();
             tabPage2 = new TabPage();
+            btnEdit = new Button();
             label9 = new Label();
             btnDelete = new Button();
             btnSearch = new Button();
@@ -76,7 +78,7 @@
             // 
             // dtpDate
             // 
-            dtpDate.Location = new Point(8, 47);
+            dtpDate.Location = new Point(25, 74);
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(300, 31);
             dtpDate.TabIndex = 0;
@@ -84,14 +86,14 @@
             // 
             // txtMemo
             // 
-            txtMemo.Location = new Point(600, 250);
+            txtMemo.Location = new Point(600, 209);
             txtMemo.Name = "txtMemo";
             txtMemo.Size = new Size(150, 31);
             txtMemo.TabIndex = 1;
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(312, 250);
+            txtAmount.Location = new Point(398, 207);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(150, 31);
             txtAmount.TabIndex = 2;
@@ -100,7 +102,7 @@
             // 
             cmbCategory.FormattingEnabled = true;
             cmbCategory.Items.AddRange(new object[] { "生活費", "食費", "娯楽費", "給与", "その他" });
-            cmbCategory.Location = new Point(25, 250);
+            cmbCategory.Location = new Point(25, 209);
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(150, 33);
             cmbCategory.TabIndex = 3;
@@ -110,7 +112,7 @@
             // 
             cmbInout.FormattingEnabled = true;
             cmbInout.Items.AddRange(new object[] { "支出", "収入" });
-            cmbInout.Location = new Point(191, 250);
+            cmbInout.Location = new Point(240, 207);
             cmbInout.Name = "cmbInout";
             cmbInout.Size = new Size(91, 33);
             cmbInout.TabIndex = 11;
@@ -126,7 +128,7 @@
             // 
             // btpAdd
             // 
-            btpAdd.Location = new Point(644, 315);
+            btpAdd.Location = new Point(498, 314);
             btpAdd.Name = "btpAdd";
             btpAdd.Size = new Size(112, 34);
             btpAdd.TabIndex = 4;
@@ -137,7 +139,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(80, 189);
+            label1.Location = new Point(25, 172);
             label1.Name = "label1";
             label1.Size = new Size(64, 25);
             label1.TabIndex = 5;
@@ -146,7 +148,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(354, 189);
+            label2.Location = new Point(398, 172);
             label2.Name = "label2";
             label2.Size = new Size(48, 25);
             label2.TabIndex = 6;
@@ -155,7 +157,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(653, 189);
+            label3.Location = new Point(600, 172);
             label3.Name = "label3";
             label3.Size = new Size(38, 25);
             label3.TabIndex = 7;
@@ -164,7 +166,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(106, 19);
+            label4.Location = new Point(25, 46);
             label4.Name = "label4";
             label4.Size = new Size(48, 25);
             label4.TabIndex = 8;
@@ -183,6 +185,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(btnUpdate);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(dtpDate);
             tabPage1.Controls.Add(btpAdd);
@@ -202,10 +205,20 @@
             tabPage1.Text = "入力";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(638, 314);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(112, 34);
+            btnUpdate.TabIndex = 12;
+            btnUpdate.Text = "更新";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
+            // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(191, 189);
+            label8.Location = new Point(231, 172);
             label8.Name = "label8";
             label8.Size = new Size(91, 25);
             label8.TabIndex = 10;
@@ -214,6 +227,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnEdit);
             tabPage2.Controls.Add(label9);
             tabPage2.Controls.Add(cmbInout2);
             tabPage2.Controls.Add(btnDelete);
@@ -232,6 +246,16 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "一覧";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            btnEdit.Location = new Point(502, 324);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(112, 34);
+            btnEdit.TabIndex = 11;
+            btnEdit.Text = "編集";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // label9
             // 
@@ -475,5 +499,7 @@
         private ComboBox cmbInout2;
         private Label label8;
         private Label label9;
+        private Button btnUpdate;
+        private Button btnEdit;
     }
 }
