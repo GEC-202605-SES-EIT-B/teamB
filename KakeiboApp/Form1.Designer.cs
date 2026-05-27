@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -94,7 +94,6 @@
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(300, 31);
             dtpDate.TabIndex = 0;
-            dtpDate.ValueChanged += dtpDate_ValueChanged;
             // 
             // txtMemo
             // 
@@ -118,7 +117,6 @@
             cmbCategory.Name = "cmbCategory";
             cmbCategory.Size = new Size(150, 33);
             cmbCategory.TabIndex = 3;
-            cmbCategory.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // cmbInout
             // 
@@ -136,7 +134,6 @@
             cmbFilterType.Name = "cmbFilterType";
             cmbFilterType.Size = new Size(92, 33);
             cmbFilterType.TabIndex = 0;
-            cmbFilterType.SelectedIndexChanged += cmbInout2_SelectedIndexChanged;
             // 
             // btpAdd
             // 
@@ -229,7 +226,6 @@
             cmbDeleteCategory.Name = "cmbDeleteCategory";
             cmbDeleteCategory.Size = new Size(150, 33);
             cmbDeleteCategory.TabIndex = 15;
-            cmbDeleteCategory.SelectedIndexChanged += cmbDeleteCategory_SelectedIndexChanged;
             // 
             // btnDeleteCategory
             // 
@@ -266,7 +262,6 @@
             label8.Size = new Size(91, 25);
             label8.TabIndex = 10;
             label8.Text = "収入/支出";
-            label8.Click += label8_Click;
             // 
             // btnUpdate
             // 
@@ -329,7 +324,6 @@
             label9.Size = new Size(91, 25);
             label9.TabIndex = 10;
             label9.Text = "収入/支出";
-            label9.Click += label9_Click;
             // 
             // btnDelete
             // 
@@ -359,7 +353,6 @@
             label7.Size = new Size(64, 25);
             label7.TabIndex = 7;
             label7.Text = "カテゴリ";
-            label7.Click += label7_Click;
             // 
             // cmbFilterCategory
             // 
@@ -369,7 +362,6 @@
             cmbFilterCategory.Name = "cmbFilterCategory";
             cmbFilterCategory.Size = new Size(150, 33);
             cmbFilterCategory.TabIndex = 6;
-            cmbFilterCategory.SelectedIndexChanged += cmbFilterCategory_SelectedIndexChanged;
             // 
             // label6
             // 
@@ -388,7 +380,6 @@
             label5.Size = new Size(66, 25);
             label5.TabIndex = 4;
             label5.Text = "開始日";
-            label5.Click += label5_Click;
             // 
             // dtpTo
             // 
@@ -396,7 +387,6 @@
             dtpTo.Name = "dtpTo";
             dtpTo.Size = new Size(191, 31);
             dtpTo.TabIndex = 3;
-            dtpTo.ValueChanged += dtpTo_ValueChanged;
             // 
             // dtpFrom
             // 
@@ -433,8 +423,8 @@
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea1);
+            chartArea17.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea17);
             chart2.Location = new Point(17, 124);
             chart2.Name = "chart2";
             chart2.Size = new Size(490, 232);
@@ -443,8 +433,8 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea2);
+            chartArea18.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea18);
             chart1.Location = new Point(513, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
@@ -497,7 +487,6 @@
             dtpMonth.ShowUpDown = true;
             dtpMonth.Size = new Size(300, 31);
             dtpMonth.TabIndex = 0;
-            dtpMonth.ValueChanged += dtpMonth_ValueChanged;
             // 
             // tabPage4
             // 

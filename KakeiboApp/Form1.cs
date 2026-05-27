@@ -83,36 +83,6 @@ namespace KakeiboApp
             public int Month { get; set; }
             public decimal GoalAmount { get; set; }
         }
-
-        private void dtpDate_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpMonth_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         // 起動時読み込み
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -121,30 +91,7 @@ namespace KakeiboApp
             UpdateGoalDisplay();
         }
 
-        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label8_Click(object sender, EventArgs e)//関係ない
-        {
-
-        }
-
-        private void cmbInout2_SelectedIndexChanged(object sender, EventArgs e)//一覧画面の入出金コンボボックス
-        {
-
-        }
-
-        private void dtpTo_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)//関係ない
-        {
-
-        }
 
         private void csvButton_Click(object sender, EventArgs e)//CSV出力
         {
@@ -235,10 +182,6 @@ namespace KakeiboApp
                 sCell = $"\"{sCell}\"";//文字列全体をダブルクォーテーションで囲む
             }
             return sCell;
-        }
-        private void cmbDeleteCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
