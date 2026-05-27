@@ -600,7 +600,7 @@ namespace KakeiboApp
                 int maxRowsCount = dgvList.Rows.Count;
                 if (dgvList.AllowUserToAddRows)
                 {
-                    maxRowsCount = maxRowsCount - 1;//追加行が含まれているため、行数を1減らす
+                    maxRowsCount = maxRowsCount  ;//追加行が含まれているため、行数を1減らす
                 }
 
                 for (int iRow = 0; iRow < maxRowsCount; iRow++)//行のループ
