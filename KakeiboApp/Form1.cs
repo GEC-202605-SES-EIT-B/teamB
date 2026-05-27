@@ -14,6 +14,8 @@ namespace KakeiboApp
     {
         private List<Money> kakeiboList = new List<Money>();
         private Money editingItem = null;
+        private List<string> categoryList = new List<string>();
+        string categoryFile = "category.json";
 
         string filePath = "money.json";
         private string goalFilePath = "goal.json";
@@ -26,31 +28,49 @@ namespace KakeiboApp
 
 
             if (!File.Exists(filePath))
-            {
-                MessageBox.Show("初回起動");
-                return;
+            { 
+                string readJson = File.ReadAllText(filePath);
+                kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
             }
-            string readJson = File.ReadAllText(filePath);
-            kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
 
-            if (kakeiboList != null)
+            if (File.Exists(categoryFile))
             {
-                var categories = kakeiboList
-                    .Select(x => x.Cate)
-                    .Distinct();
+                var json = File.ReadAllText(categoryFile);
+                categoryList = JsonSerializer.Deserialize<List<string>>(json);
 
-                foreach (var c in categories)
+                if (categoryList != null)
                 {
-
-                    if (!cmbCategory.Items.Contains(c))
+                    foreach (var c in categoryList)
                     {
-                        cmbCategory.Items.Add(c);
+                        if (!cmbCategory.Items.Contains(c)) 
+                        {
+                            cmbCategory.Items.Add(c);
+                        }
                     }
-
-                    MessageBox.Show("読み込み完了:");
                 }
+
+                if (kakeiboList != null)
+                {
+                    var categories = kakeiboList
+                        .Select(x => x.Cate)
+                        .Distinct();
+
+                    foreach (var c in categories)
+                    {
+
+                        if (!cmbCategory.Items.Contains(c))
+                        {
+                            cmbCategory.Items.Add(c);
+                        }
+                    }
+                }
+
+                MessageBox.Show("読み込み完了:");
             }
         }
+                
+            
+        
         
 
         public class Money
@@ -180,6 +200,9 @@ namespace KakeiboApp
                 return;
             }
 
+            dgvList.DataSource = null;
+            dgvList.DataSource = data.ToList();
+
             MessageBox.Show("検索完了");
 
             //Jsonファイル読み込み
@@ -192,19 +215,6 @@ namespace KakeiboApp
                 }
 
                 string readJson = File.ReadAllText(filePath);
-                kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
-
-
-                if (kakeiboList != null)
-                {
-                    MessageBox.Show("読み込み完了:");
-                    dgvList.DataSource = kakeiboList;
-
-                }
-                else
-                {
-                    MessageBox.Show("データが空です");
-                }
             }
 
             catch (JsonException jex)
@@ -440,9 +450,12 @@ namespace KakeiboApp
             }
 
             // 重複チェック
-            if (!cmbCategory.Items.Contains(newCategory))
+            if (!categoryList.Contains(newCategory))
             {
-                cmbCategory.Items.Add(newCategory);
+                categoryList.Add(newCategory);
+                cmbFilterCategory.Items.Add(newCategory);
+                var json = JsonSerializer.Serialize(categoryList);
+                File.WriteAllText(categoryFile, json);
                 MessageBox.Show("追加完了！");
             }
             else
