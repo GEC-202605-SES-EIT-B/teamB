@@ -8,7 +8,6 @@
 - 円グラフ・棒グラフで月ごとの収支を表示
 - 自由にカテゴリを追加できる
 - CSVファイルへのエクスポート機能
-- 
 
 
 ## 使用技術/ツール
@@ -16,25 +15,37 @@
 - NuGet,Visual Studio
 
 ## 画面構成
-- 入力画面(https://github.com/user-attachments/assets/7a3f8811-7148-4f65-989f-4167969f6df5)
-- 一覧画面(https://github.com/user-attachments/assets/4381ccaf-a45b-4774-89cc-b1fb51a07bce)
-- 月次サマリ(https://github.com/user-attachments/assets/f19878ac-117f-4a5c-889c-aee7f916fc18)
+- 入力画面(https://github.com/user-attachments/assets/587f81a5-5770-4ef8-a7d0-9945a5633633)
+- 一覧画面(https://github.com/user-attachments/assets/bcca5c8e-685c-4112-8e3a-f9f8f971d10f)
+- 月次サマリ(https://github.com/user-attachments/assets/3443055a-9f5c-4c7e-b886-3c99d51a581f)
+- 目標画面(https://github.com/user-attachments/assets/b1a1de64-ad98-42fd-b10c-a9e78ce5d50e)
 
 ## 操作方法
 - 入力タブをクリック
 	- **日付**・**カテゴリ**・**収入/支出** を選択
 	- **金額**・**メモ** を入力
 	- **登録**ボタンをクリック
+		-**カテゴリ**の追加/削除も可能 
 
 - 一覧タブをクリック
 	- 開始日と終了日を選択
 	- **カテゴリ**・**収入/支出**を選択
 	- **検索**ボタンをクリック
-		- **CSV出力**ボタンにてエクスポートも可能
+	- 一覧データを編集したい場合
+		-編集ボタンクリック後、入力画面にて編集・更新
+
+	-**CSV出力**ボタンにてエクスポートも可能
+		-出力後、\KakeiboApp\bin\Debug\net10.0-windows内に@kakibo.csvが生成
+		
 		
 - 月次サマリタブをクリック
 	- 開始月と終了月を選択
 	- **集計**ボタンをクリック
+
+- 目標タブをクリック
+	- 支出目標を入力
+	- 設定ボタンをクリック
+	
 
 ## 作成者
 | 名前 | 所属 |
@@ -44,4 +55,4 @@
 | 山下 茉佑子 | 中日本ユニット |
 
 ### 最終更新日
-2026/05/25
+2026/05/27
