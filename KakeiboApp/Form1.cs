@@ -138,6 +138,7 @@ namespace KakeiboApp
             var jsonString = JsonSerializer.Serialize(kakeiboList);
             File.WriteAllText(filePath, jsonString);
 
+            UpdateMonthlySummary();
             UpdateGoalDisplay();
 
             txtAmount.Text = "";
@@ -272,24 +273,36 @@ namespace KakeiboApp
                 MessageBox.Show($"読み込みエラー: {ex.Message}");
             }
 
+            UpdateMonthlySummary();
+        }
+        // 月次サマリー　自動更新メゾット
+        private void UpdateMonthlySummary()
+        {
+            if (!File.Exists(filePath)) //money.jsonファイルの存在確認
+            {
+                return;
+            }
+            string jsonString = File.ReadAllText(filePath); // jsonファイル読み込み
 
-
-            string jsonString = File.ReadAllText("money.json");
-            var moneyList = JsonSerializer.Deserialize<List<Money>>(jsonString);
-            var summary = new MonthlySummary();
+            var moneyList = JsonSerializer.Deserialize<List<Money>>(jsonString); // jsonからlistに変換
+            if (moneyList == null) //　変換に失敗したら終了
+            {
+                return;
+            }
+            var summary = new MonthlySummary(); // 集計クラス作成
             summary.Calculate(moneyList, dtpMonth.Value.Year, dtpMonth.Value.Month);
-
+            // label表示
             lblIncome.Text = "収入：" + summary.Income.ToString("#,##0") + "円";
             lblExpense.Text = "支出：" + summary.Expense.ToString("#,##0") + "円";
             lblIBalance.Text = "差額；" + summary.Balance.ToString("#,##0") + "円";
 
-            // 円グラフの表示
-            chart1.Series.Clear();
+            // 円グラフ
+            chart1.Series.Clear(); // 初期化
             chart1.Legends.Clear();
 
-            Series series = new Series();
+            Series series = new Series(); // グラフデータ作成
 
-            series.ChartType = SeriesChartType.Pie;
+            series.ChartType = SeriesChartType.Pie; 
             series["PieStartAngle"] = "270";
 
             series.Points.AddXY("収入", summary.Income);
@@ -298,10 +311,10 @@ namespace KakeiboApp
             series.Points[0].Color = Color.RoyalBlue;
             series.Points[1].Color = Color.Orange;
 
-            chart1.Series.Add(series);
+            chart1.Series.Add(series); // 円グラフ表示
 
             // カテゴリ別棒グラフ
-            chart2.Series.Clear();
+            chart2.Series.Clear(); // 初期化
 
             Series barSeries = new Series("カテゴリ別");
 
@@ -314,10 +327,9 @@ namespace KakeiboApp
             barSeries.IsXValueIndexed = true;
             barSeries.Font = new Font("Meiryo", 7);
 
-            foreach (var item in summary.CategoryTotals)
+            foreach (var item in summary.CategoryTotals) // 給与以外の支出を表示
             {
-
-                if (item.Key == "給与")
+                if (item.Key == "給与") 
                 {
                     continue;
                 }
@@ -328,7 +340,7 @@ namespace KakeiboApp
             }
 
 
-            chart2.Series.Add(barSeries);
+            chart2.Series.Add(barSeries); // 棒グラフ表示
         }
 
         private void cmbFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -390,6 +402,7 @@ namespace KakeiboApp
             dgvList.DataSource = kakeiboList;
 
             MessageBox.Show("削除完了");
+            UpdateMonthlySummary();
             UpdateGoalDisplay();
         }
 
@@ -502,6 +515,7 @@ namespace KakeiboApp
 
             MessageBox.Show("更新完了");
             tabControl1.SelectedIndex = 1; // 一覧画面へ遷移
+            UpdateMonthlySummary();
             UpdateGoalDisplay();
         }
         // 一覧画面　編集ボタン
@@ -539,10 +553,7 @@ namespace KakeiboApp
             btnUpdate.Enabled = true; // 更新可
             tabControl1.SelectedIndex = 0; // 入力画面へ遷移
         }
-
-
-
-
+ 
 
         private void csvButton_Click(object sender, EventArgs e)//CSV出力
         {
