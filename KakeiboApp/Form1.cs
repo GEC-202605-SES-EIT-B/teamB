@@ -28,7 +28,7 @@ namespace KakeiboApp
 
 
             if (!File.Exists(filePath))
-            { 
+            {
                 string readJson = File.ReadAllText(filePath);
                 kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
             }
@@ -42,9 +42,13 @@ namespace KakeiboApp
                 {
                     foreach (var c in categoryList)
                     {
-                        if (!cmbCategory.Items.Contains(c)) 
+                        if (!cmbCategory.Items.Contains(c))
                         {
                             cmbCategory.Items.Add(c);
+                        }
+                        if (!cmbFilterCategory.Items.Contains(c))
+                        {  
+                            cmbFilterCategory.Items.Add(c);
                         }
                     }
                 }
@@ -68,10 +72,10 @@ namespace KakeiboApp
                 MessageBox.Show("読み込み完了:");
             }
         }
-                
-            
-        
-        
+
+
+
+
 
         public class Money
         {
@@ -429,6 +433,7 @@ namespace KakeiboApp
             if (!categoryList.Contains(newCategory))
             {
                 categoryList.Add(newCategory);
+                cmbCategory.Items.Add(newCategory);
                 cmbFilterCategory.Items.Add(newCategory);
                 var json = JsonSerializer.Serialize(categoryList);
                 File.WriteAllText(categoryFile, json);
@@ -590,7 +595,7 @@ namespace KakeiboApp
                 int maxRowsCount = dgvList.Rows.Count;
                 if (dgvList.AllowUserToAddRows)
                 {
-                    maxRowsCount = maxRowsCount  ;//追加行が含まれているため、行数を1減らす
+                    maxRowsCount = maxRowsCount;//追加行が含まれているため、行数を1減らす
                 }
 
                 for (int iRow = 0; iRow < maxRowsCount; iRow++)//行のループ
@@ -698,6 +703,53 @@ namespace KakeiboApp
                 }
             }
         }
-　    }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            string selected = cmbCategory.Text;
+
+            if (string.IsNullOrEmpty(selected))
+            {
+                MessageBox.Show("削除するカテゴリを選択してください");
+                return;
+            }
+
+            if (selected == "すべて")
+            {
+                MessageBox.Show("このカテゴリは削除できません");
+                return;
+            }
+
+            // 確認
+            var result = MessageBox.Show("カテゴリを削除しますか？", "確認", MessageBoxButtons.YesNo);
+            if (result != DialogResult.Yes)
+                return;
+
+            // カテゴリListから削除
+            categoryList.Remove(selected);
+
+            //コンボボックスから削除
+            cmbCategory.Items.Remove(selected);
+            cmbFilterCategory.Items.Remove(selected);
+
+            //データからも削除（重要）
+            kakeiboList.RemoveAll(x => x.Cate == selected);
+
+            //JSON更新（カテゴリ）
+            var categoryJson = JsonSerializer.Serialize(categoryList);
+            File.WriteAllText(categoryFile, categoryJson);
+
+            //JSON更新（データ）
+            var moneyJson = JsonSerializer.Serialize(kakeiboList);
+            File.WriteAllText(filePath, moneyJson);
+
+            //一覧更新
+            dgvList.DataSource = null;
+            dgvList.DataSource = kakeiboList;
+
+            MessageBox.Show("カテゴリ削除完了");
+        }
+    }
 }
+
 

@@ -43,6 +43,7 @@
             label4 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            btnDeleteCategory = new Button();
             btnAddCategory = new Button();
             txtNewCategory = new TextBox();
             label8 = new Label();
@@ -196,6 +197,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(btnDeleteCategory);
             tabPage1.Controls.Add(btnAddCategory);
             tabPage1.Controls.Add(txtNewCategory);
             tabPage1.Controls.Add(label8);
@@ -217,6 +219,16 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "入力";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteCategory
+            // 
+            btnDeleteCategory.Location = new Point(45, 248);
+            btnDeleteCategory.Name = "btnDeleteCategory";
+            btnDeleteCategory.Size = new Size(112, 34);
+            btnDeleteCategory.TabIndex = 14;
+            btnDeleteCategory.Text = "カテゴリ削除";
+            btnDeleteCategory.UseVisualStyleBackColor = true;
+            btnDeleteCategory.Click += button2_Click_1;
             // 
             // btnAddCategory
             // 
@@ -612,5 +624,6 @@
         private Label lblMontlyGoal;
         private Label lblCurrentExpense;
         private Label lblRemain;
+        private Button btnDeleteCategory;
     }
 }
