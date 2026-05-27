@@ -86,8 +86,6 @@ namespace KakeiboApp
 
             MessageBox.Show("登録完了");
 
-
-
             kakeiboList.Add(
               new Money
               {
@@ -101,6 +99,8 @@ namespace KakeiboApp
 
             var jsonString = JsonSerializer.Serialize(kakeiboList);
             File.WriteAllText(filePath, jsonString);
+
+            UpdateGoalDisplay();
 
             txtAmount.Text = "";
             txtMemo.Text = "";
@@ -307,39 +307,14 @@ namespace KakeiboApp
         {
 
         }
-
+        // 起動時読み込み
         private void Form1_Load(object sender, EventArgs e)
         {
             btnUpdate.Enabled = false; //　画面起動時に更新ボタンは操作不可
 
             lblMontlyGoal.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月の支出目標";
 
-
-            if (File.Exists(goalFilePath)) // 目標設定があるか
-            {
-                string json =　File.ReadAllText(goalFilePath);
-
-                GoalData goal =　JsonSerializer.Deserialize<GoalData>(json);
-
-                if (goal != null)
-                {
-                    txtGoal.Text =　goal.GoalAmount.ToString();　//　目標金額表示
-
-                    decimal currentExpense = kakeiboList
-                        .Where(x =>
-                            x.Date.Year == DateTime.Now.Year &&
-                            x.Date.Month == DateTime.Now.Month &&
-                            x.Inout == "支出")
-                        .Sum(x => x.Price);
-
-                    // 残り金額
-                    decimal remain =　goal.GoalAmount - currentExpense;
-
-                    lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
-
-                    lblRemain.Text = "残り予算：" + remain.ToString("#,##0") + "円";
-                }
-            }
+            UpdateGoalDisplay();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -387,6 +362,7 @@ namespace KakeiboApp
             dgvList.DataSource = kakeiboList;
 
             MessageBox.Show("削除完了");
+            UpdateGoalDisplay();
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -494,6 +470,7 @@ namespace KakeiboApp
 
             MessageBox.Show("更新完了");
             tabControl1.SelectedIndex = 1; // 一覧画面へ遷移
+            UpdateGoalDisplay();
         }
         // 一覧画面　編集ボタン
         private void btnEdit_Click_1(object sender, EventArgs e)
@@ -665,6 +642,34 @@ namespace KakeiboApp
             File.WriteAllText(goalFilePath, json);
             MessageBox.Show("目標を設定しました");
 
+        }
+        private void UpdateGoalDisplay()
+        {
+            if (File.Exists(goalFilePath)) // 目標設定があるか
+            {
+                string json = File.ReadAllText(goalFilePath);
+
+                GoalData goal = JsonSerializer.Deserialize<GoalData>(json);
+
+                if (goal != null)
+                {
+                    txtGoal.Text = goal.GoalAmount.ToString(); // 目標金額表示
+
+                    decimal currentExpense = kakeiboList
+                        .Where(x =>
+                            x.Date.Year == DateTime.Now.Year &&
+                            x.Date.Month == DateTime.Now.Month &&
+                            x.Inout == "支出")
+                        .Sum(x => x.Price);
+
+                    // 残り金額
+                    decimal remain = goal.GoalAmount - currentExpense;
+
+                    lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
+
+                    lblRemain.Text = "残り予算：" + remain.ToString("#,##0") + "円";
+                }
+            }
         }
     }
 }
