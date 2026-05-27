@@ -28,9 +28,23 @@ namespace KakeiboApp
 
             if (kakeiboList != null)
             {
-                MessageBox.Show("読み込み完了:");
+                var categories = kakeiboList
+                    .Select(x => x.Cate)
+                    .Distinct();
+
+                foreach (var c in categories)
+                {
+
+                    if (!cmbCategory.Items.Contains(c))
+                    {
+                        cmbCategory.Items.Add(c);
+                    }
+
+                    MessageBox.Show("読み込み完了:");
+                }
             }
         }
+        
 
         public class Money
         {
@@ -393,7 +407,7 @@ namespace KakeiboApp
             txtNewCategory.Text = "";
 
         }
-    }
+　    }
 }
 
 
