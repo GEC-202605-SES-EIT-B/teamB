@@ -45,8 +45,12 @@ namespace KakeiboApp
                             cmbCategory.Items.Add(c);
                         }
                         if (!cmbFilterCategory.Items.Contains(c))
-                        {  
+                        {
                             cmbFilterCategory.Items.Add(c);
+                        }
+                        if (!cmbDeleteCategory.Items.Contains(c))
+                        {
+                            cmbDeleteCategory.Items.Add(c);
                         }
                     }
                 }
@@ -69,8 +73,8 @@ namespace KakeiboApp
                 MessageBox.Show("読み込み完了:");
             }
         }
-                
-            
+
+
 
         public class Money
         {
@@ -294,7 +298,7 @@ namespace KakeiboApp
 
             Series series = new Series(); // グラフデータ作成
 
-            series.ChartType = SeriesChartType.Pie; 
+            series.ChartType = SeriesChartType.Pie;
             series["PieStartAngle"] = "270";
 
             series.Points.AddXY("収入", summary.Income);
@@ -321,7 +325,7 @@ namespace KakeiboApp
 
             foreach (var item in summary.CategoryTotals) // 給与以外の支出を表示
             {
-                if (item.Key == "給与") 
+                if (item.Key == "給与")
                 {
                     continue;
                 }
@@ -438,6 +442,7 @@ namespace KakeiboApp
                 categoryList.Add(newCategory);
                 cmbCategory.Items.Add(newCategory);
                 cmbFilterCategory.Items.Add(newCategory);
+                cmbDeleteCategory.Items.Add(newCategory);
                 var json = JsonSerializer.Serialize(categoryList);
                 File.WriteAllText(categoryFile, json);
                 MessageBox.Show("追加完了！");
@@ -543,7 +548,7 @@ namespace KakeiboApp
             btnUpdate.Enabled = true; // 更新可
             tabControl1.SelectedIndex = 0; // 入力画面へ遷移
         }
- 
+
 
         private void csvButton_Click(object sender, EventArgs e)//CSV出力
         {
@@ -726,17 +731,11 @@ namespace KakeiboApp
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            string selected = cmbCategory.Text;
+            string selected = cmbDeleteCategory.Text;
 
             if (string.IsNullOrEmpty(selected))
             {
                 MessageBox.Show("削除するカテゴリを選択してください");
-                return;
-            }
-
-            if (selected == "すべて")
-            {
-                MessageBox.Show("このカテゴリは削除できません");
                 return;
             }
 
@@ -751,23 +750,27 @@ namespace KakeiboApp
             //コンボボックスから削除
             cmbCategory.Items.Remove(selected);
             cmbFilterCategory.Items.Remove(selected);
+            cmbDeleteCategory.Items.Remove(selected);
 
             //データからも削除（重要）
             kakeiboList.RemoveAll(x => x.Cate == selected);
 
-            //JSON更新（カテゴリ）
-            var categoryJson = JsonSerializer.Serialize(categoryList);
-            File.WriteAllText(categoryFile, categoryJson);
-
-            //JSON更新（データ）
-            var moneyJson = JsonSerializer.Serialize(kakeiboList);
-            File.WriteAllText(filePath, moneyJson);
+            File.WriteAllText(categoryFile, JsonSerializer.Serialize(categoryList));
+            File.WriteAllText(filePath, JsonSerializer.Serialize(kakeiboList));
 
             //一覧更新
             dgvList.DataSource = null;
             dgvList.DataSource = kakeiboList;
 
+            cmbDeleteCategory.SelectedIndex = -1;
+            cmbDeleteCategory.Text = "";
+
             MessageBox.Show("カテゴリ削除完了");
+        }
+
+        private void cmbDeleteCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

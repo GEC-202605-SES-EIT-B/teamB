@@ -43,6 +43,7 @@
             label4 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            cmbDeleteCategory = new ComboBox();
             btnDeleteCategory = new Button();
             btnAddCategory = new Button();
             txtNewCategory = new TextBox();
@@ -197,6 +198,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(cmbDeleteCategory);
             tabPage1.Controls.Add(btnDeleteCategory);
             tabPage1.Controls.Add(btnAddCategory);
             tabPage1.Controls.Add(txtNewCategory);
@@ -220,9 +222,18 @@
             tabPage1.Text = "入力";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // cmbDeleteCategory
+            // 
+            cmbDeleteCategory.FormattingEnabled = true;
+            cmbDeleteCategory.Location = new Point(25, 314);
+            cmbDeleteCategory.Name = "cmbDeleteCategory";
+            cmbDeleteCategory.Size = new Size(150, 33);
+            cmbDeleteCategory.TabIndex = 15;
+            cmbDeleteCategory.SelectedIndexChanged += cmbDeleteCategory_SelectedIndexChanged;
+            // 
             // btnDeleteCategory
             // 
-            btnDeleteCategory.Location = new Point(45, 248);
+            btnDeleteCategory.Location = new Point(181, 314);
             btnDeleteCategory.Name = "btnDeleteCategory";
             btnDeleteCategory.Size = new Size(112, 34);
             btnDeleteCategory.TabIndex = 14;
@@ -232,7 +243,7 @@
             // 
             // btnAddCategory
             // 
-            btnAddCategory.Location = new Point(191, 315);
+            btnAddCategory.Location = new Point(181, 259);
             btnAddCategory.Name = "btnAddCategory";
             btnAddCategory.Size = new Size(112, 34);
             btnAddCategory.TabIndex = 13;
@@ -242,7 +253,7 @@
             // 
             // txtNewCategory
             // 
-            txtNewCategory.Location = new Point(25, 315);
+            txtNewCategory.Location = new Point(25, 259);
             txtNewCategory.Name = "txtNewCategory";
             txtNewCategory.Size = new Size(150, 31);
             txtNewCategory.TabIndex = 12;
@@ -625,5 +636,6 @@
         private Label lblCurrentExpense;
         private Label lblRemain;
         private Button btnDeleteCategory;
+        private ComboBox cmbDeleteCategory;
     }
 }
