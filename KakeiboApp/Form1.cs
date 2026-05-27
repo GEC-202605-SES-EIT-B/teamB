@@ -25,8 +25,8 @@ namespace KakeiboApp
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-            if (!File.Exists(filePath))
-            {
+            if (File.Exists(filePath))
+            { 
                 string readJson = File.ReadAllText(filePath);
                 kakeiboList = JsonSerializer.Deserialize<List<Money>>(readJson);
             }
@@ -114,7 +114,7 @@ namespace KakeiboApp
             {
                 Date = dtpDate.Value,
                 Category = cmbCategory.Text,
-                Inout = cmbCategory.Text,
+                Inout = cmbInout.Text,
                 Amount = decimal.Parse(txtAmount.Text),
                 Memo = txtMemo.Text
             };
@@ -229,7 +229,7 @@ namespace KakeiboApp
             }
 
             dgvList.DataSource = null;
-            dgvList.DataSource = data.ToList();
+            dgvList.DataSource = data.OrderBy(x => x.Date).ToList();
 
         }
         // 月次サマリー　集計ボタン
@@ -661,6 +661,7 @@ namespace KakeiboApp
                     x.Date.Month == DateTime.Now.Month &&
                     x.Inout == "支出")
                 .Sum(x => x.Price);
+            lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
 
             // 目標-支出合計
             decimal remain = monthlyGoal - currentExpense;
@@ -709,6 +710,7 @@ namespace KakeiboApp
                             x.Date.Month == DateTime.Now.Month &&
                             x.Inout == "支出")
                         .Sum(x => x.Price);
+                    lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
 
                     // 残り金額
                     decimal remain = goal.GoalAmount - currentExpense;
