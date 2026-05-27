@@ -25,8 +25,6 @@ namespace KakeiboApp
             InitializeComponent();
 
             // 起動時にjsonファイルの読み込み（データありなら保存ファイル読み込み）　
-
-
             if (!File.Exists(filePath))
             { 
                 string readJson = File.ReadAllText(filePath);
@@ -64,14 +62,11 @@ namespace KakeiboApp
                         }
                     }
                 }
-
                 MessageBox.Show("読み込み完了:");
             }
         }
                 
             
-        
-        
 
         public class Money
         {
@@ -155,9 +150,6 @@ namespace KakeiboApp
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
 
         }
 
@@ -347,9 +339,7 @@ namespace KakeiboApp
         private void Form1_Load(object sender, EventArgs e)
         {
             btnUpdate.Enabled = false; //　画面起動時に更新ボタンは操作不可
-
             lblMontlyGoal.Text = DateTime.Now.Year + "年" + DateTime.Now.Month + "月の支出目標";
-
             UpdateGoalDisplay();
         }
 
@@ -665,8 +655,18 @@ namespace KakeiboApp
             // 目標-支出合計
             decimal remain = monthlyGoal - currentExpense;
 
-            lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
-            lblRemain.Text = "残り予算：" + remain.ToString("#,##0") + "円";
+            if (remain > 0)
+            {
+                lblRemain.Text = "あと " + remain.ToString("#,##0") + "円 使えます";
+            }
+            else if (remain == 0)
+            {
+                lblRemain.Text = "予算ぴったりです";
+            }
+            else
+            {
+                lblRemain.Text = Math.Abs(remain).ToString("#,##0") + "円 予算オーバーです";
+            }
 
             //　保存用データ
             GoalData goal = new GoalData()
@@ -685,7 +685,7 @@ namespace KakeiboApp
         {
             if (File.Exists(goalFilePath)) // 目標設定があるか
             {
-                string json = File.ReadAllText(goalFilePath);
+                string json = File.ReadAllText(goalFilePath); // jsonファイル読み込み
 
                 GoalData goal = JsonSerializer.Deserialize<GoalData>(json);
 
@@ -703,9 +703,18 @@ namespace KakeiboApp
                     // 残り金額
                     decimal remain = goal.GoalAmount - currentExpense;
 
-                    lblCurrentExpense.Text = "現在の支出：" + currentExpense.ToString("#,##0") + "円";
-
-                    lblRemain.Text = "残り予算：" + remain.ToString("#,##0") + "円";
+                    if (remain > 0)
+                    {
+                        lblRemain.Text = "あと " + remain.ToString("#,##0") + "円 使えます";
+                    }
+                    else if (remain == 0)
+                    {
+                        lblRemain.Text = "予算ぴったりです";
+                    }
+                    else
+                    {
+                        lblRemain.Text = Math.Abs(remain).ToString("#,##0") + "円 予算オーバーです";
+                    }
                 }
             }
         }
