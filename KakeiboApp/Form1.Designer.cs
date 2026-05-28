@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             dtpDate = new DateTimePicker();
             txtMemo = new TextBox();
             txtAmount = new TextBox();
@@ -137,7 +137,7 @@
             // 
             // btpAdd
             // 
-            btpAdd.Location = new Point(498, 314);
+            btpAdd.Location = new Point(459, 282);
             btpAdd.Name = "btpAdd";
             btpAdd.Size = new Size(112, 34);
             btpAdd.TabIndex = 4;
@@ -265,7 +265,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(638, 314);
+            btnUpdate.Location = new Point(588, 282);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(112, 34);
             btnUpdate.TabIndex = 12;
@@ -423,8 +423,8 @@
             // 
             // chart2
             // 
-            chartArea17.Name = "ChartArea1";
-            chart2.ChartAreas.Add(chartArea17);
+            chartArea1.Name = "ChartArea1";
+            chart2.ChartAreas.Add(chartArea1);
             chart2.Location = new Point(17, 124);
             chart2.Name = "chart2";
             chart2.Size = new Size(490, 232);
@@ -433,8 +433,8 @@
             // 
             // chart1
             // 
-            chartArea18.Name = "ChartArea1";
-            chart1.ChartAreas.Add(chartArea18);
+            chartArea2.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea2);
             chart1.Location = new Point(513, 124);
             chart1.Name = "chart1";
             chart1.Size = new Size(267, 232);
